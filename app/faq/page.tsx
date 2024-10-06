@@ -56,7 +56,7 @@ export default function FaqPage() {
         </form>
       </div>
       <div
-        className={`flex p-8 justify-center flex-wrap w-full max-w-[calc(100%-1rem)] md:max-w-[calc(100%-4rem)] xl:max-w-[calc(100%-16rem)] min-h-[32rem] ${
+        className={`flex p-8 justify-center flex-wrap w-full max-w-[calc(100%-1rem)] md:max-w-[calc(100%-4rem)] xl:max-w-[calc(100%-16rem)] flex-grow ${
           error.message && "items-center"
         }`}
       >
