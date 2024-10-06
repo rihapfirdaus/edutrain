@@ -34,8 +34,8 @@ export default function TemplateGuest({ children }: TemplateGuestProps) {
       <div className="min-h-28 max-h-28">
         <NavGuest navlinks={navlinks} />
       </div>
-      <div className="flex flex-col overflow-x-hidden">
-        {children}
+      <div className="flex flex-col h-screen overflow-x-hidden">
+        <div className="flex flex-col flex-grow">{children}</div>
         <Footer />
       </div>
     </div>

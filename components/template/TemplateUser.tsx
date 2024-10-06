@@ -83,11 +83,12 @@ export default function TemplateUser({ children, account }: TemplateUserProps) {
           </div>
         )}
         <div
-          className={`flex w-full xl:w-auto xl:flex-grow flex-col xl:max-w-[calc(100%-${
+          className={`flex flex-col h-screen overflow-x-hidden w-full xl:w-auto flex-grow xl:max-w-[calc(100%-${
             sidebar ? "16rem" : "5rem"
           })] overflow-x-hidden transition-all duration-500 ease-in-out`}
         >
-          {children}
+          <div className="flex flex-col flex-grow">{children}</div>
+
           <Footer />
         </div>
       </div>
