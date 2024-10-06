@@ -20,10 +20,8 @@ export default function HighlightMedia({
           <h2 className="text-xl lg:text-3xl font-bold text-center">{title}</h2>
           <p className="lg:text-lg text-center">{desc}</p>
           <div
-            className={`flex w-full overflow-x-auto max-w-[calc(100%-1rem)] md:max-w-[calc(100%-2rem)] gap-4 py-4 ${
-              data.length === 1
-                ? "items-center justify-center "
-                : "lg:items-center lg:justify-center"
+            className={`flex w-full overflow-x-auto max-w-[calc(100%-1rem)] md:max-w-[calc(100%-2rem)] gap-4 py-4 lg:items-center lg:justify-center ${
+              data.length === 1 && "items-center justify-center "
             }"`}
           >
             {data.map((item) => (
