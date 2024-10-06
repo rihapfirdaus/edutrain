@@ -86,7 +86,7 @@ export default function JobroleDetail() {
 
   const [productFilter, setProductFilter] = useState<Set<string>>(new Set());
   return (
-    <div className="bg-[#f4f4f4] flex flex-col items-center gap-4 xl:gap-6 py-8 min-h-[45rem]">
+    <div className="bg-[#f4f4f4] flex flex-col items-center gap-4 xl:gap-6 py-8 flex-grow">
       <div className="max-w-[calc(100%-1rem)] md:max-w-[calc(100%-4rem)] xl:max-w-[calc(100%-16rem)] flex flex-col w-full gap-4">
         <h1 className="text-2xl lg:text-3xl xl:text-4xl font-bold">
           Cyber Security Manager

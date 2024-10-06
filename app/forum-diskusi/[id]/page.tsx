@@ -5,7 +5,7 @@ import FormForum from "@/components/form/FormForum";
 
 export default function ForumDetailPage() {
   return (
-    <div className="bg-[#f4f4f4] flex flex-col items-center gap-4 xl:gap-6 py-8 min-h-[45rem]">
+    <div className="bg-[#f4f4f4] flex flex-col items-center gap-4 xl:gap-6 py-8 flex-grow">
       <div className="flex gap-4 w-full max-w-[calc(100%-1rem)] md:max-w-[calc(100%-4rem)] xl:max-w-[calc(100%-16rem)]">
         <div className="flex flex-col gap-4 flex-grow">
           <ItemDiscussHighlight />

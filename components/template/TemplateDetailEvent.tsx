@@ -18,7 +18,7 @@ export default function TemplateDetailEvent({
 }: TemplateDetailEventProps) {
   return (
     <div
-      className={`flex items-center min-h-[45rem] bg-[#f4f4f4] ${
+      className={`flex items-center flex-grow bg-[#f4f4f4] ${
         error.status
           ? "flex-grow justify-center items-center"
           : "flex flex-col gap-4 pt-8 xl:gap-6 items-center"

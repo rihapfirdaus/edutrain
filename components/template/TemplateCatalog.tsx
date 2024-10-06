@@ -36,8 +36,8 @@ export default function TemplateCatalog(props: TemplateCatalogProps) {
   const { title, entity, error, auth, tabs } = props;
 
   return (
-    <div className="flex flex-col items-center gap-4 xl:gap-6 py-8 min-h-[45rem] bg-[#f4f4f4]">
-      <div className="max-w-[calc(100%-1rem)] md:max-w-[calc(100%-4rem)] xl:max-w-[calc(100%-16rem)] flex flex-col w-full gap-4">
+    <div className="flex flex-col items-center gap-4 xl:gap-6 py-8 flex-grow bg-[#f4f4f4]">
+      <div className="max-w-[calc(100%-1rem)] md:max-w-[calc(100%-4rem)] xl:max-w-[calc(100%-16rem)] flex flex-col h-full w-full gap-4">
         {auth && tabs ? (
           <TabLink tabs={tabs} />
         ) : (
@@ -62,9 +62,9 @@ export default function TemplateCatalog(props: TemplateCatalogProps) {
         </div>
 
         <div
-          className={`flex ${
+          className={`flex flex-col h-full ${
             error.status
-              ? "flex-grow justify-center items-center"
+              ? "justify-center items-center"
               : "flex-wrap w-full gap-2"
           }`}
         >
