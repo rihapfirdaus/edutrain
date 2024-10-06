@@ -33,7 +33,7 @@ export default function FaqPage() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center bg-[#f4f4f4]">
+    <div className="flex flex-col items-center bg-[#f4f4f4] h-full flex-grow">
       <div
         style={{
           backgroundImage:
