@@ -27,7 +27,7 @@ export default function DetailHistoryWebinar({
   const price = data.lastWebinarHistory.price;
   return (
     <CardBase
-      className={`flex-col w-full min-w-96 xl:max-w-96 p-4 h-fit ${className}`}
+      className={`flex-col w-full min-w-80 xl:max-w-96 p-4 h-fit ${className}`}
     >
       <h4 className="text-lg font-bold">Rincian Webinar:</h4>
       <p className="flex items-center gap-2">

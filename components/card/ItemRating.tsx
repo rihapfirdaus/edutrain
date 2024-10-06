@@ -10,7 +10,7 @@ export default function ItemRating({ card = true }: ItemRatingProps) {
 
   return (
     <CardBase
-      className={`text-black p-2 flex-col gap-0 min-w-96 max-w-96 h-fit ${
+      className={`text-black p-2 flex-col gap-0 min-w-80 max-w-96 h-fit ${
         !card && "w-full min-w-0 max-w-none"
       }`}
     >

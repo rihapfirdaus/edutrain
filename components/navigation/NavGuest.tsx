@@ -34,7 +34,7 @@ export default function NavGuest({ navlinks }: NavGuestProps) {
             <p>info@uinsgd.ac.id</p>
           </Link>
         </section>
-        <section className="flex gap-4">
+        <section className="flex gap-4 text-sm md:text-base">
           {navlinks.map(({ href, label, desc }) => (
             <Link
               key={href}

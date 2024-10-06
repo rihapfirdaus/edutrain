@@ -8,10 +8,10 @@ import Link from "next/link";
 export default function PaymentPage() {
   return (
     <TemplateTransaction>
-      <div className="w-full overflow-x-auto max-w-[calc(100%-4rem)] xl:max-w-[calc(100%-16rem)]">
+      <div className="w-full overflow-x-auto">
         <TransactionTable />
       </div>
-      <div className="flex gap-4 xl:gap-6 w-full max-w-[calc(100%-4rem)] xl:max-w-[calc(100%-16rem)]">
+      <div className="flex flex-col lg:flex-row gap-4 xl:gap-6 w-full">
         <div className="flex-grow flex flex-col gap-2 ">
           <div className="border-2 px-2 py-4 text-xl font-bold text-blue-500 flex justify-between items-center bg-white">
             <p>Total:</p>
@@ -29,7 +29,7 @@ export default function PaymentPage() {
             </span>
           </div>
         </div>
-        <div className="flex flex-col w-full xl:max-w-96 gap-2 justify-end">
+        <div className="flex flex-col w-full lg:max-w-96 gap-2 justify-end">
           <form className="flex gap-2">
             <Input
               name="voucher"

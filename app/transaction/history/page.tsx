@@ -41,13 +41,15 @@ export default async function HistoryTransactionPage() {
 
   return (
     <div className="flex flex-col items-center gap-4 xl:gap-6 py-8 min-h-[45rem] bg-[#f4f4f4]">
-      <TabLink tabs={tabs} />
-      <div className="flex flex-wrap flex-col w-full max-w-[calc(100%-4rem)] xl:max-w-[calc(100%-16rem)] gap-2">
-        {[...Array(10)].map(() => (
-          <TransactionDone />
-        ))}
-      </div>
-      {/* <div
+      <div className="flex flex-col gap-4 w-full max-w-[calc(100%-1rem)] md:max-w-[calc(100%-4rem)] xl:max-w-[calc(100%-16rem)] ">
+        <TabLink tabs={tabs} />
+
+        <div className="flex flex-col w-full gap-2">
+          {[...Array(10)].map(() => (
+            <TransactionDone />
+          ))}
+        </div>
+        {/* <div
         className={`flex ${
           error.status
             ? "flex-grow justify-center items-center"
@@ -64,6 +66,7 @@ export default async function HistoryTransactionPage() {
           </>
         )}
       </div> */}
+      </div>
     </div>
   );
 }

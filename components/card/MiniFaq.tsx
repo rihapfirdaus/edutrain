@@ -40,7 +40,7 @@ export default function MiniFaq({ data }: MiniFaqProps) {
   }
 
   return (
-    <CardBase className="flex-col min-w-96 max-w-96 p-4 h-fit">
+    <CardBase className="flex-col min-w-72 max-w-80 p-4 h-fit">
       <Icon size={40} className="bg-[#0041A1] text-white p-2 rounded-full" />
       <h3 className="font-bold text-xl">{data.question}</h3>
       <p>{data.answer}</p>

@@ -26,7 +26,7 @@ export default function DetailHistoryWorkshop({
 
   return (
     <CardBase
-      className={`flex-col w-full min-w-96 xl:max-w-96 p-4 h-fit ${className}`}
+      className={`flex-col w-full min-w-80 xl:max-w-96 p-4 h-fit ${className}`}
     >
       <h4 className="text-xl font-bold">Rincian Workshop:</h4>
       <p className="flex items-center gap-2">

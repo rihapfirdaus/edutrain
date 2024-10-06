@@ -59,7 +59,7 @@ export default function FormChangeProfile({ account }: FormChangeProfileProps) {
 
   return (
     <>
-      <CardBase className="flex-col p-8">
+      <CardBase className="flex-col p-4 md:p-8">
         <h1 className="text-xl font-bold">
           {editMode ? "Edit Profil" : "Profil Anda"}
         </h1>

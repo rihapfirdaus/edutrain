@@ -12,7 +12,6 @@ import {
   Wallet as TransactionIcon,
   Bell as NotificationIcon,
   ShoppingCart as CartIcon,
-  CircleUser as AccountIcon,
 } from "lucide-react";
 import SidebarClosed from "../navigation/SidebarClosed";
 import SidebarOpen from "../navigation/SidebarOpen";
@@ -21,7 +20,6 @@ import { usePathname } from "next/navigation";
 import Footer from "../navigation/Footer";
 import DropdownCart from "../navigation/DropdownCart";
 import DropdownNotification from "../navigation/DropdownNotification";
-import DropdownProfile from "../navigation/DropdownProfile";
 import { Account } from "@/libs/actions/auth/cookieHandler";
 
 interface TemplateUserProps {
@@ -45,13 +43,12 @@ export default function TemplateUser({ children, account }: TemplateUserProps) {
   };
 
   const navs = [
-    { Action: DropdownCart, Icon: CartIcon, label: "Keranjang" },
+    { Action: DropdownCart, Icon: CartIcon, label: "Keranjang", href: "/cart" },
     {
       Action: DropdownNotification,
       Icon: NotificationIcon,
       label: "Notifikasi",
     },
-    { Action: DropdownProfile, Icon: AccountIcon, label: "Akun" },
   ];
 
   const sidebars = [
@@ -60,7 +57,9 @@ export default function TemplateUser({ children, account }: TemplateUserProps) {
     { href: "/job-role", Icon: JobRoleIcon, label: "Job Role" },
     { href: "/workshop", Icon: WorkshopIcon, label: "Workshop" },
     { href: "/training", Icon: TrainingIcon, label: "Training" },
+    { href: "/cart", Icon: CartIcon, label: "Keranjang" },
     { href: "/transaction", Icon: TransactionIcon, label: "Transaksi" },
+    { href: "/notification", Icon: NotificationIcon, label: "Info" },
     { href: "/profile", Icon: ProfileIcon, label: "Profile" },
     { href: "/faq", Icon: HelpIcon, label: "Pusat Bantuan" },
   ];

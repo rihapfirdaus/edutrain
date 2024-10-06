@@ -46,7 +46,7 @@ export default function CardBase({
   return (
     <WrapperComponent
       href={href || "#"}
-      className={`flex gap-2 relative border-2 rounded-xl hover:shadow-lg overflow-clip bg-white ${className} ${
+      className={`flex gap-2 relative border-2 rounded-xl hover:shadow-sm overflow-clip bg-white ${className} ${
         showStatus && expCatalog ? "grayscale" : ""
       }`}
     >

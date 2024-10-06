@@ -19,7 +19,7 @@ export default function ButtonPicker({
       newValue.add(defaultValue);
       setValue(newValue);
     }
-  }, [defaultValue, value, setValue]);
+  }, []);
 
   const handleClick = (item: any) => {
     const newValue = new Set(value);
@@ -37,7 +37,7 @@ export default function ButtonPicker({
         <button
           key={index}
           onClick={() => handleClick(item)}
-          className={`py-2 px-4 rounded-lg ${
+          className={`py-2 px-4 rounded-lg whitespace-nowrap ${
             value.has(item) ? "bg-[#0041A1] text-white" : "bg-gray-200"
           }`}
         >

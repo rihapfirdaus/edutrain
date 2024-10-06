@@ -26,16 +26,16 @@ export default function TemplateHistoryEvent({
   error,
 }: TemplateHistoryEventProps) {
   return (
-    <main className="flex flex-col">
-      <div
-        className={`flex min-h-[45rem] ${
-          error.status
-            ? "flex-grow justify-center items-center"
-            : "flex flex-col gap-4 py-8 items-center"
-        }`}
-      >
+    <div
+      className={`flex items-center min-h-[45rem] bg-[#f4f4f4] ${
+        error.status
+          ? "flex-grow justify-center items-center"
+          : "flex flex-col gap-4 pt-8 xl:gap-6 items-center"
+      }`}
+    >
+      <div className="max-w-[calc(100%-1rem)] md:max-w-[calc(100%-4rem)] xl:max-w-[calc(100%-16rem)] flex flex-col w-full gap-4">
         {data && (
-          <div className="flex flex-col w-full max-w-[calc(100%-4rem)] xl:max-w-[calc(100%-16rem)] gap-4">
+          <div className="flex flex-col w-full gap-4">
             <h1 className="text-lg lg:text-2xl font-bold border-b text-blue-500 border-blue-500 w-fit">
               Riwayat {entity}
             </h1>
@@ -68,6 +68,6 @@ export default function TemplateHistoryEvent({
         )}
       </div>
       {children}
-    </main>
+    </div>
   );
 }

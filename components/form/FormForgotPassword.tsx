@@ -8,16 +8,16 @@ export default function FormForgotPassword() {
     <FormBase layout="right">
       <Link
         href={"/auth/login"}
-        className="absolute top-5 left-5 rounded-full hover:text-white hover:bg-[#0041A1] p-2"
+        className="absolute top-4 md:top-8 left-0 rounded-full hover:text-white hover:bg-[#0041A1] p-2"
       >
         <BackIcon />
       </Link>
-      <h2 className="text-3xl font-bold">Lupa Kata Sandi?</h2>
-      <p className="max-w-[calc(100%-4rem)]">
+      <h2 className="text-2xl md:text-3xl font-bold">Lupa Kata Sandi?</h2>
+      <p className="text-start">
         Untuk proses verifikasi, masukkan alamat email Anda. Kami akan
         mengirimkan tautan untuk mengatur ulang kata sandi ke email tersebut.
       </p>
-      <form className="flex flex-col w-full max-w-[calc(100%-4rem)] gap-4">
+      <form className="flex flex-col w-full gap-4">
         <Input
           title="Masukkan alamat email Anda."
           type="email"

@@ -46,7 +46,7 @@ export default function Menu({ auth, account }: MenuProps) {
           Pilih layanan sesuai minat anda:
         </p>
       )}
-      <div className="flex gap-4 max-w-[calc(100%-2rem)] overflow-x-scroll p-4">
+      <div className="flex gap-4 max-w-[calc(100%-1rem)] md:max-w-[calc(100%-2rem)] overflow-x-scroll p-4">
         {menus.map(({ href, Icon, label }) => (
           <Link
             key={href}

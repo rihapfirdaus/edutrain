@@ -16,7 +16,7 @@ interface DetailWebinarProps {
 
 export default function DetailWebinar({ data }: DetailWebinarProps) {
   return (
-    <CardBase className="flex-col w-full min-w-96 xl:max-w-96 p-4 h-fit">
+    <CardBase className="flex-col w-full min-w-80 xl:max-w-96 p-4 h-fit">
       <h4 className="text-xl font-bold">Rincian Webinar:</h4>
       <p className="flex items-center gap-2">
         <DateIcon />

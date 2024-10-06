@@ -17,16 +17,16 @@ export default function TemplateDetailEvent({
   error,
 }: TemplateDetailEventProps) {
   return (
-    <main className="flex flex-col">
-      <div
-        className={`flex min-h-[45rem] ${
-          error.status
-            ? "flex-grow justify-center items-center"
-            : "flex flex-col gap-4 py-8 items-center"
-        }`}
-      >
+    <div
+      className={`flex items-center min-h-[45rem] bg-[#f4f4f4] ${
+        error.status
+          ? "flex-grow justify-center items-center"
+          : "flex flex-col gap-4 pt-8 xl:gap-6 items-center"
+      }`}
+    >
+      <div className="max-w-[calc(100%-1rem)] md:max-w-[calc(100%-4rem)] xl:max-w-[calc(100%-16rem)] flex flex-col w-full gap-4">
         {data && (
-          <div className="flex flex-col w-full max-w-[calc(100%-4rem)] xl:max-w-[calc(100%-16rem)] gap-4">
+          <div className="flex flex-col w-full gap-4">
             <h1 className="text-2xl lg:text-3xl xl:text-4xl font-bold">
               {data.title}
             </h1>
@@ -46,6 +46,6 @@ export default function TemplateDetailEvent({
         )}
       </div>
       {children}
-    </main>
+    </div>
   );
 }

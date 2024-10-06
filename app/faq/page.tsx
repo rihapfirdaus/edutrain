@@ -39,13 +39,13 @@ export default function FaqPage() {
           backgroundImage:
             "linear-gradient(to right, rgba(0, 65, 161, 0.8), rgba(0, 142, 214, 0.8)), url('/bg_uin_2.jpg')",
         }}
-        className="py-8 flex flex-col gap-8 w-full max-w-full justify-center items-center text-white bg-cover bg-center min-h-[32rem]"
+        className="py-8 flex flex-col gap-2 lg:gap-8 w-full max-w-full justify-center items-center text-white bg-cover bg-center min-h-[32rem]"
       >
         <p className="font-bold">FAQs</p>
-        <h1 className="text-2xl lg:text-5xl font-bold">Tanya Kami</h1>
+        <h1 className="text-3xl lg:text-5xl font-bold">Tanya Kami</h1>
 
-        <form action="" className="flex flex-col gap-8">
-          <p className="font-bold">
+        <form action="" className="flex flex-col gap-8 max-w-64 md:max-w-none">
+          <p className="font-bold text-center">
             Punya pertanyaan? kami siap membantu Anda.
           </p>
           <Input
@@ -56,7 +56,7 @@ export default function FaqPage() {
         </form>
       </div>
       <div
-        className={`flex p-8 justify-center flex-wrap w-full max-w-[calc(100%-4rem)] xl:max-w-[calc(100%-16rem)] min-h-[32rem] ${
+        className={`flex p-8 justify-center flex-wrap w-full max-w-[calc(100%-1rem)] md:max-w-[calc(100%-4rem)] xl:max-w-[calc(100%-16rem)] min-h-[32rem] ${
           error.message && "items-center"
         }`}
       >

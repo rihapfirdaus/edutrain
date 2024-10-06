@@ -28,12 +28,9 @@ export default function FormRegister() {
   return (
     <>
       <FormBase>
-        <h2 className="text-3xl font-bold">Mari Kita Mulai!</h2>
+        <h2 className="text-2xl md:text-3xl font-bold">Mari Kita Mulai!</h2>
         <p>Buat akunmu:</p>
-        <form
-          onSubmit={handleSubmit}
-          className="flex flex-col w-full max-w-[calc(100%-4rem)] gap-4"
-        >
+        <form onSubmit={handleSubmit} className="flex flex-col w-full gap-4">
           <Input
             title="Masukkan nama lengkap Anda."
             type="text"

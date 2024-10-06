@@ -9,12 +9,14 @@ export default function HighlightRating() {
       }}
       className="flex flex-col justify-center items-center py-8 max-w-full bg-cover bg-center"
     >
-      <div className="flex flex-col justify-center items-center gap-4 w-full max-w-[calc(100%-4rem)] xl:max-w-[calc(100%-16rem)]">
-        <p className="text-lg xl:text-2xl text-center text-white font-bold">
+      <div className="flex flex-col w-full overflow-x-auto max-w-[calc(100%-1rem)] md:max-w-[calc(100%-2rem)] gap-4 py-4">
+        <p className="text-xl xl:text-2xl text-center text-white font-bold">
           Apa kata mereka?
         </p>
-        <p className="text-white font-bold">Lihat daftar ulasan di bawah ini</p>
-        <div className="flex gap-4 w-full overflow-x-scroll py-4">
+        <p className="text-white font-bold text-center">
+          Lihat daftar ulasan di bawah ini
+        </p>
+        <div className="flex gap-4 w-full overflow-x-scroll p-4">
           {[...Array(10)].map(() => (
             <ItemRating />
           ))}

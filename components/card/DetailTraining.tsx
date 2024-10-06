@@ -17,7 +17,7 @@ export default function DetailTraining({ data }: DetailTrainingProps) {
   const price = data.lastTrainingHistory.price;
 
   return (
-    <CardBase className="flex-col min-w-96 xl:max-w-96 p-4 h-fit relative">
+    <CardBase className="flex-col min-w-80 xl:max-w-96 p-4 h-fit relative">
       <h4 className="text-xl font-bold">Rincian Training:</h4>
       <p className="flex items-center gap-2">
         <DateIcon />

@@ -37,12 +37,11 @@ export default function FormLogin() {
   return (
     <>
       <FormBase>
-        <h2 className="text-3xl font-bold">Selamat Datang Kembali!</h2>
+        <h2 className="text-2xl md:text-3xl font-bold">
+          Selamat Datang Kembali!
+        </h2>
         <p>Akses akunmu:</p>
-        <form
-          onSubmit={handleSubmit}
-          className="flex flex-col w-full max-w-[calc(100%-4rem)] gap-4"
-        >
+        <form onSubmit={handleSubmit} className="flex flex-col w-full gap-4">
           <Input
             title="Masukkan alamat email Anda."
             type="email"

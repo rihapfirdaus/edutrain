@@ -17,7 +17,7 @@ export default function DetailWorkshop({ data }: DetailWorkshopProps) {
   const price = data.lastWorkshopHistory.price;
 
   return (
-    <CardBase className="flex-col min-w-96 xl:max-w-96 p-4 h-fit relative">
+    <CardBase className="flex-col min-w-80 xl:max-w-96 p-4 h-fit relative">
       <h4 className="text-xl font-bold">Rincian Workshop:</h4>
       <p className="flex items-center gap-2">
         <InstructorIcon />

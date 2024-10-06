@@ -71,11 +71,13 @@ export default function Footer() {
         backgroundImage:
           "linear-gradient(to right, rgba(0, 65, 161, 0.8), rgba(0, 142, 214, 0.8)), url('/bg_uin_1.jpg'",
       }}
-      className="flex flex-col py-12 px-8 gap-4 text-white bg-center bg-cover"
+      className="flex flex-col py-12 px-4 md:px-8 gap-4 text-white bg-center bg-cover"
     >
       <div className="flex flex-col xl:flex-row justify-around flex-wrap gap-8 xl:gap-0">
-        <section className="max-w-96 xl:min-w-96 flex flex-col gap-4">
-          <p className="text-2xl font-bold">Tentang</p>
+        <section className="md:max-w-96 xl:min-w-80 flex flex-col gap-4">
+          <p className="text-center md:text-start text-lg md:text-2xl font-bold">
+            Tentang
+          </p>
           <Link className="hover:underline" href="#">
             Tentang Kami
           </Link>
@@ -83,8 +85,10 @@ export default function Footer() {
             Kebijakan Privasi
           </Link>
         </section>
-        <section className="max-w-96 xl:min-w-96 flex flex-col gap-4">
-          <p className="text-2xl font-bold">Hubungi Kami</p>
+        <section className="md:max-w-96 xl:min-w-80 flex flex-col gap-4">
+          <p className="text-center md:text-start text-lg md:text-2xl font-bold">
+            Hubungi Kami
+          </p>
           <Link
             className="hover:underline flex gap-2 items-center"
             href="https://wa.me/+6281214030521"
@@ -114,8 +118,10 @@ export default function Footer() {
             ))}
           </p>
         </section>
-        <section className="max-w-96 xl:min-w-96 flex flex-col gap-4">
-          <p className="text-2xl font-bold">Lokasi</p>
+        <section className="md:max-w-96 xl:min-w-80 flex flex-col gap-4">
+          <p className="text-center md:text-start text-lg md:text-2xl font-bold">
+            Lokasi
+          </p>
           {maps.map(({ href, label, location }) => (
             <div key={href}>
               <p className="flex gap-2 items-center font-bold">
@@ -128,7 +134,7 @@ export default function Footer() {
           ))}
         </section>
       </div>
-      <p className="self-center font-bold">
+      <p className="self-center text-center font-bold">
         &copy;2024 PTIPD UIN Sunan Gunung Djati Bandung
       </p>
     </div>

@@ -38,11 +38,11 @@ export default function TabLink({ tabs }: TabLinkProps) {
   };
 
   return (
-    <div className="flex gap-2 w-full max-w-[calc(100%-4rem)] xl:max-w-[calc(100%-16rem)] bg-transparent">
+    <div className="flex gap-2 w-full bg-transparent">
       {tabs.map(({ href, icon, label }) => (
         <Link
           href={href}
-          className={`text-lg lg:text-2xl flex gap-2 items-center hover:text-blue-500 ${
+          className={`md:text-lg lg:text-2xl flex gap-2 items-center hover:text-blue-500 ${
             pageActive(href) &&
             "text-blue-500 border-b-2 border-blue-500 font-semibold"
           }`}

@@ -9,7 +9,7 @@ export default function ModalComingSoon() {
           backgroundImage:
             "linear-gradient(to right, rgba(0, 65, 161, 0.8), rgba(0, 142, 214, 0.8)), url('/bg_uin_1.jpg')",
         }}
-        className="flex flex-col justify-center items-center text-white font-bold bg-cover bg-center max-w-96 min-w-96 rounded-3xl min-h-64 shadow-xl relative gap-2 border-2"
+        className="flex flex-col justify-center items-center text-white font-bold bg-cover bg-center max-w-96 min-w-80 rounded-3xl min-h-64 shadow-xl relative gap-2 border-2"
       >
         <FailedIcon size={58} />
         <p className="text-2xl text-center">

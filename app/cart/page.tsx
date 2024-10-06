@@ -12,7 +12,7 @@ export default function CartPage() {
 
   return (
     <TemplateTransaction>
-      <div className="w-full overflow-x-auto max-w-[calc(100%-4rem)] xl:max-w-[calc(100%-16rem)]">
+      <div className="w-full overflow-x-auto">
         <TransactionTable
           action
           checkBox
@@ -23,7 +23,7 @@ export default function CartPage() {
           }}
         />
       </div>
-      <div className="flex flex-col md:flex-row w-full max-w-[calc(100%-4rem)] xl:max-w-[calc(100%-16rem)] gap-2 justify-end">
+      <div className="flex flex-col md:flex-row w-full gap-2 justify-end">
         {selected.length > 0 && (
           <p className="font-bold rounded-lg p-2 bg-gray-400 text-white text-center">
             Total belanja: {currencyFormatter(totalPrice)} ({totalQuantity}{" "}

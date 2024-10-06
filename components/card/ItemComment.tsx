@@ -12,7 +12,7 @@ export default function ItemComment() {
         </div>
         <p className="text-sm text-slate-500">10:00 WIB, 10 Feb 24</p>
       </div>
-      <p>Saye Upin ini adik saye ipin, ini kisah kami berdua..</p>
+      <p>Saye Upin ini adik saye ijat, ini kisah kami berdua..</p>
       <div className="flex gap-4">
         <button className="flex gap-1 items-center">
           <LikeIcon size={20} />{" "}

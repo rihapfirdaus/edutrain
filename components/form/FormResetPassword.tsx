@@ -4,15 +4,15 @@ import FormBase from "./FormBase";
 export default function FormResetPassword() {
   return (
     <FormBase layout="right">
-      <h2 className="text-3xl font-bold">Atur Ulang Kata Sandi</h2>
-      <p className="max-w-[calc(100%-4rem)] flex flex-col gap-2">
+      <h2 className="text-2xl md:text-3xl font-bold">Atur Ulang Kata Sandi</h2>
+      <p className="flex flex-col gap-2 text-start">
         <span>
           Buat kata sandi baru* untuk akun Anda untuk mendapatkan akses dan
           menikmati semua fitur.
         </span>
         <span className="text-sm">*minimal 8 karakter, case sensitive</span>
       </p>
-      <form className="flex flex-col w-full max-w-[calc(100%-4rem)] gap-4">
+      <form className="flex flex-col w-full gap-4">
         <Input
           title="Buat kata sandi yang kuat (minimal 8 karakter)"
           type="password"

@@ -1,4 +1,4 @@
-import { LucideIcon } from "lucide-react";
+import { LucideIcon, UserIcon } from "lucide-react";
 import Image from "next/image";
 import Dropdown from "./Dropdown";
 import DropdownProfile from "./DropdownProfile";
@@ -7,10 +7,7 @@ import DropdownCart from "./DropdownCart";
 import { Account } from "@/libs/actions/auth/cookieHandler";
 
 interface NavItem {
-  Action:
-    | typeof DropdownCart
-    | typeof DropdownNotification
-    | typeof DropdownProfile;
+  Action: typeof DropdownCart | typeof DropdownNotification;
   Icon: LucideIcon;
   label: string;
 }
@@ -46,13 +43,23 @@ export default function NavUser({
                 <button
                   title={label}
                   type="button"
-                  className="px-4 py-2 flex justify-center items-center"
+                  className="hidden px-4 py-2 sm:flex justify-center items-center"
                 >
                   <Icon />
                 </button>
-                <Action account={account} />
+                <Action />
               </Dropdown>
             ))}
+            <Dropdown>
+              <button
+                title="Akun"
+                type="button"
+                className="px-4 py-2 flex justify-center items-center"
+              >
+                <UserIcon />
+              </button>
+              <DropdownProfile account={account} />
+            </Dropdown>
           </section>
         </div>
       </nav>

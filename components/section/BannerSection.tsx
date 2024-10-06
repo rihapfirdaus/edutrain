@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function BannerSection() {
   return (
-    <div className="w-full bg-gradient-to-r from-[#fff] from-35% via-[#80C7EB] via-74% to-[#008ED6] p-8 flex flex-wrap md:gap-2 items-center justify-center gap-4">
+    <div className="w-full bg-gradient-to-r from-[#fff] from-35% via-[#80C7EB] via-74% to-[#008ED6] py-8 px-4 md:px-8 flex flex-wrap md:gap-2 items-center justify-center">
       <Image
         src="/edutrain_rocket.png"
         alt="Edutrain"

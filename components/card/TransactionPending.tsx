@@ -5,8 +5,8 @@ import Link from "next/link";
 
 export default function TransactionPending() {
   return (
-    <CardBase className="flex-col max-w-80 lg:flex-row lg:max-w-none justify-between items-center w-full gap-2 p-2">
-      <div className="flex flex-col gap-2 lg:min-w-80">
+    <CardBase className="flex-col md:flex-row lg:max-w-none justify-between items-center w-full gap-2 p-2">
+      <div className="flex flex-col gap-2 w-full lg:min-w-80">
         <h3 className="font-bold text-xl">Pembelian Workshop X</h3>
         <p className="bg-red-500 text-white py-1 px-2 rounded-lg text-sm w-fit">
           Menunggu Pembayaran
@@ -15,14 +15,14 @@ export default function TransactionPending() {
           <p className="text-blue-500 font-bold">
             Total: {currencyFormatter(200000)}
           </p>
-          <p>Selasa, 12 Maret 2024 pukul 12.41 WIB</p>
+          <p>12 Maret 2024 pukul 12.41 WIB</p>
           <p className="flex items-center text-sm gap-2 text-yellow-500 font-semibold">
             <ExpiredIcon />{" "}
-            <span>Kadaluarsa pada Rabu, 13 Maret 2024 pukul 12.41 WIB</span>
+            <span>Kadaluarsa pada 13 Maret 2024 pukul 12.41 WIB</span>
           </p>
         </div>
       </div>
-      <div className="flex flex-col gap-2 lg:min-w-80 h-fit">
+      <div className="flex flex-col gap-2 w-full md:max-w-80 lg:min-w-80 h-fit">
         <Link
           href={"/transaction/payment"}
           className="flex-grow p-2 bg-[#0041A1] text-white flex justify-center rounded-lg h-fit"
