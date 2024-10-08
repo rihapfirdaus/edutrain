@@ -26,7 +26,6 @@ export async function loginAction(formData: FormData): Promise<FinalReturn> {
 
     if (status === 200) {
       finalReturn = { status: status, message: "Login sukses!" };
-      console.log(data.data.token);
       await storeAuthToken({ token: data.data.token });
       await storeAccount(data.data.account);
     }

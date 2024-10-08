@@ -36,7 +36,6 @@ export async function updateProfileAction(
 
     if (status === 200) {
       finalReturn = { status: status, message: "Update profil sukses!" };
-      console.log(data.data.token);
       await storeAuthToken({ token: data.data.token });
       await storeAccount(data.data.account);
     }
