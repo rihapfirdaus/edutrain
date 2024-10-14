@@ -7,9 +7,13 @@ export default function ModalCertiport() {
   const [hasSeen, setHasSeen] = useState(true);
 
   useEffect(() => {
-    if (window) {
-      setHasSeen(sessionStorage.getItem("ModalCertiport") == "true");
-    }
+    const timeoutId = setTimeout(() => {
+      if (window) {
+        setHasSeen(sessionStorage.getItem("ModalCertiport") == "true");
+      }
+    }, 1500);
+
+    return () => clearTimeout(timeoutId);
   }, []);
 
   const setHasSeenModal = () => {

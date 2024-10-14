@@ -4,28 +4,13 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
 import Slider from "react-slick";
-import axiosInstance from "@/utils/axiosInstance";
 
-type Banner = {
-  id: string;
-  url: string;
-  title: string;
-};
+interface CarouselProps {
+  slides: [{ id: string; url: string; title: string }];
+}
 
-export default function Carousel() {
-  const [banners, setBanners] = useState<Banner[]>([]); // State untuk menyimpan data banner
-
-  useEffect(() => {
-    const fetch = async () => {
-      const { status, data } = await axiosInstance.get("/banners");
-      setBanners(data.data);
-    };
-
-    fetch();
-  }, []);
-
+export default function Carousel({ slides }: CarouselProps) {
   const settings = {
     className: "w-full",
     infinite: true,
@@ -36,18 +21,22 @@ export default function Carousel() {
   };
 
   return (
-    <Slider {...settings}>
-      {banners.map((banner) => (
-        <Image
-          className="w-auto h-auto"
-          key={banner.id}
-          src={banner.url}
-          alt={banner.title}
-          width={960}
-          height={240}
-          priority={true}
-        />
-      ))}
-    </Slider>
+    <>
+      {slides.length > 0 && (
+        <Slider {...settings}>
+          {slides.map((slide) => (
+            <Image
+              className="w-auto h-auto"
+              key={slide.id}
+              src={slide.url}
+              alt={slide.title}
+              width={960}
+              height={240}
+              priority={true}
+            />
+          ))}
+        </Slider>
+      )}
+    </>
   );
 }
