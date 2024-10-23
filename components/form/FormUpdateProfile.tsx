@@ -3,11 +3,12 @@ import { useState } from "react";
 import CardBase from "../card/CardBase";
 import { Input } from "../custom/Input";
 import { Select } from "../custom/Select";
-import { dateFormatterToInputDate } from "@/libs/helpers/formatter/dateFormatter";
-import Link from "next/link";
+import {
+  inputDateFormatter,
+  ISOFormatter,
+} from "@/libs/helpers/formatter/dateFormatter";
 import { CheckCircle as SuccesIcon, Frown as FailedIcon } from "lucide-react";
 import ModalAction from "../modal/ModalAction";
-import { useRouter } from "next/navigation";
 import { FinalReturn, updateProfile } from "@/libs/actions/account/actions";
 
 interface FormUpdateProfileProps {
@@ -19,7 +20,9 @@ export default function FormUpdateProfile({ account }: FormUpdateProfileProps) {
   const [email, setEmail] = useState(account?.email || "");
   const [username, setUsername] = useState(account?.username || "");
   const [gender, setGender] = useState(account?.gender || "");
-  const [birthdate, setBirthdate] = useState(account?.birthdate || "");
+  const [birthdate, setBirthdate] = useState(
+    account?.birthdate || "01-01-2001"
+  );
   const [organization, setOrganization] = useState(account?.organization || "");
   const [university, setUniversity] = useState(account?.university || "");
   const [phone, setPhone] = useState(account?.phone || "");
@@ -47,7 +50,7 @@ export default function FormUpdateProfile({ account }: FormUpdateProfileProps) {
         ? "PEREMPUAN"
         : gender
     );
-    formData.append("birthdate", birthdate);
+    formData.append("birthdate", ISOFormatter(birthdate));
     formData.append("university", university);
     formData.append("organization", organization);
     formData.append("phone", phone);
@@ -115,7 +118,7 @@ export default function FormUpdateProfile({ account }: FormUpdateProfileProps) {
             type="date"
             placeholder="Tanggal Lahir"
             name="birthdate"
-            value={dateFormatterToInputDate(birthdate || "0")}
+            value={inputDateFormatter(birthdate)}
             onChange={(e) => setBirthdate(e.target.value)}
             required
             disabled={loading || !editMode}

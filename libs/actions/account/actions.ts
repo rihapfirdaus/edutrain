@@ -1,5 +1,5 @@
-import { storeAuthToken } from "../auth/tokenHandler";
-import { getAccount, storeAccount } from "../auth/cookieHandler";
+import axios from "axios";
+import { getAuthToken } from "../auth/tokenHandler";
 import axiosInstance from "@/utils/axiosInstance";
 
 export interface FinalReturn {
@@ -12,8 +12,6 @@ export async function updateProfile(formData: FormData): Promise<FinalReturn> {
     status: 0,
     message: "Update profil gagal, periksa koneksi internet Anda.",
   };
-  const account = await getAccount();
-
   try {
     const profileRequest = {
       fullname: formData.get("fullname"),
@@ -24,24 +22,27 @@ export async function updateProfile(formData: FormData): Promise<FinalReturn> {
       gender: formData.get("gender"),
       phone: formData.get("phone"),
       address: formData.get("address"),
-      university: "OTHER",
+      university: formData.get("university"),
     };
 
-    const { status, data } = await axiosInstance.put(
-      `/accounts/${account?.id}/profile`,
+    console.log(profileRequest);
+
+    const authToken = await getAuthToken();
+
+    const { status } = await axiosInstance.put(
+      `/accounts/${formData.get("id")}`,
       profileRequest
     );
 
     if (status === 200) {
       finalReturn = { status: status, message: "Update profil sukses!" };
-      await storeAuthToken({ token: data.data.token });
-      await storeAccount(data.data.account);
     }
   } catch (e: any) {
     finalReturn = {
       status: e.status,
       message: "Error sistem, silakan coba beberapa saat lagi.",
     };
+    console.log(e);
   }
 
   return finalReturn;
