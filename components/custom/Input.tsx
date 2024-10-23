@@ -48,12 +48,12 @@ export function Input({
   const isControlled = value !== undefined && onChange !== undefined;
 
   return (
-    <div className="relative w-full">
-      {label && <label>{label}</label>}
+    <div className={`relative w-full ${disabled && "text-[#777777]"}`}>
+      {label && <label className="text-black">{label}</label>}
       {inputType === "textarea" ? (
         <textarea
           rows={4}
-          className="resize-none py-2 rounded-lg border text-slate-950 w-full bg-white px-4"
+          className={`resize-none py-2 rounded-lg border w-full bg-white px-4`}
           placeholder={placeholder}
           name={name}
           title={title}
@@ -69,7 +69,7 @@ export function Input({
         <>
           <input
             type={inputType}
-            className={`py-2 rounded-lg border text-slate-950 w-full bg-white ${
+            className={`py-2 rounded-lg border w-full bg-white ${
               type === "password"
                 ? "pl-4 pr-12"
                 : type === "search"

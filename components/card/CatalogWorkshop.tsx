@@ -73,7 +73,7 @@ export default function CatalogWorkshop({ data }: CatalogWorkshopProps) {
         >
           Daftar Sekarang
         </Link>
-        <div className="flex gap-2">
+        {/* <div className="flex gap-2">
           <Link
             href={"#"}
             title="Tambah ke keranjang"
@@ -88,7 +88,7 @@ export default function CatalogWorkshop({ data }: CatalogWorkshopProps) {
           >
             <DetailIcon />
           </Link>
-        </div>
+        </div> */}
       </div>
     </CardBase>
   );

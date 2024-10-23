@@ -36,7 +36,7 @@ export default function TemplateDetailEvent({
                 alt="#"
                 width={480}
                 height={240}
-                className="min-h-44 max-h-[40rem] w-auto object-cover object-center rounded-xl flex-grow"
+                className="w-full xl:max-w-[calc(100%-24rem)] min-h-44 max-h-[40rem] object-cover object-center rounded-xl flex-grow"
               />
 
               <Card data={data} />

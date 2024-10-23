@@ -22,7 +22,7 @@ export default function SidebarOpen({
 }: SidebarOpenProps) {
   return (
     <nav
-      className={`fixed min-w-64 max-w-64 bg-[#0f172a] top-0 bottom-0 left-0 z-20 px-4 py-4 gap-2 flex flex-col items-center overflow-y-auto transition-all duration-500`}
+      className={`fixed min-w-64 max-w-64 bg-[#0f172a] top-0 bottom-0 left-0 z-20 px-4 py-4 gap-2 flex flex-col items-center overflow-y-auto`}
     >
       <button
         className="sticky top-0 right-0 self-end text-white"

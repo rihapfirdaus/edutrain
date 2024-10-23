@@ -17,7 +17,7 @@ export default function DetailTraining({ data }: DetailTrainingProps) {
   const price = data.lastTrainingHistory.price;
 
   return (
-    <CardBase className="flex-col min-w-80 xl:max-w-96 p-4 h-fit relative">
+    <CardBase className="flex-col min-w-80 w-full xl:max-w-96 p-4 h-fit relative">
       <h4 className="text-xl font-bold">Rincian Training:</h4>
       <p className="flex items-center gap-2">
         <DateIcon />
@@ -57,12 +57,12 @@ export default function DetailTraining({ data }: DetailTrainingProps) {
         Daftar Sekarang
       </Link>
 
-      <Link
+      {/* <Link
         href={"#"}
         className="font-bold rounded-lg p-2 bg-gray-300 text-center"
       >
         Tambah ke Keranjang
-      </Link>
+      </Link> */}
     </CardBase>
   );
 }

@@ -1,5 +1,5 @@
 import { ChevronDown as ShowIcon, ChevronUp as HideIcon } from "lucide-react";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 
 interface SelectProps {
   placeholder: string;
@@ -12,7 +12,7 @@ interface SelectProps {
   label?: string;
   value?: string | number;
   defaultValue?: string | number;
-  onChange?: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  onChange?: (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
 }
 
 export function Select({
@@ -43,13 +43,23 @@ export function Select({
     setShow(!show);
   };
 
+  useEffect(() => {
+    if (disabled) {
+      setShow(false);
+    }
+  }, [disabled]);
+
+  useEffect(() => {
+    setSelected(normalization);
+  }, [normalization]);
+
   return (
-    <div className="relative w-full">
-      {label && <label>{label}</label>}
+    <div className={`relative w-full ${disabled && "text-[#777777]"}`}>
+      {label && <label className="text-black">{label}</label>}
 
       <input
         type="text"
-        className={`py-2 rounded-lg border text-slate-950 w-full bg-white px-4 caret-transparent ${
+        className={`py-2 rounded-lg border w-full bg-white px-4 caret-transparent ${
           !disabled && "cursor-pointer"
         } ${className}`}
         name={name}
@@ -60,6 +70,7 @@ export function Select({
         onClick={handleShow}
         disabled={disabled}
         {...rest}
+        readOnly
       />
 
       <button
@@ -83,6 +94,14 @@ export function Select({
               onClick={() => {
                 setSelected(item);
                 setShow(false);
+                if (onChange) {
+                  onChange({
+                    target: {
+                      name,
+                      value: item,
+                    },
+                  } as ChangeEvent<HTMLInputElement | HTMLSelectElement>);
+                }
               }}
             >
               {item}

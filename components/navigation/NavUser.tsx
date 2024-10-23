@@ -4,7 +4,6 @@ import Dropdown from "./Dropdown";
 import DropdownProfile from "./DropdownProfile";
 import DropdownNotification from "./DropdownNotification";
 import DropdownCart from "./DropdownCart";
-import { Account } from "@/libs/actions/auth/cookieHandler";
 
 interface NavItem {
   Action: typeof DropdownCart | typeof DropdownNotification;
@@ -15,7 +14,7 @@ interface NavItem {
 interface NavUserProps {
   navs: NavItem[];
   toggleSidebar: () => void;
-  account: Account | null;
+  account: any | null;
 }
 
 export default function NavUser({

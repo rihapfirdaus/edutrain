@@ -20,11 +20,10 @@ import { usePathname } from "next/navigation";
 import Footer from "../navigation/Footer";
 import DropdownCart from "../navigation/DropdownCart";
 import DropdownNotification from "../navigation/DropdownNotification";
-import { Account } from "@/libs/actions/auth/cookieHandler";
 
 interface TemplateUserProps {
   children: React.ReactNode;
-  account: Account | null;
+  account: any | null;
 }
 
 export default function TemplateUser({ children, account }: TemplateUserProps) {
@@ -54,19 +53,19 @@ export default function TemplateUser({ children, account }: TemplateUserProps) {
   const sidebars = [
     { href: "/", Icon: HomeIcon, label: "Semua Akses" },
     { href: "/webinar", Icon: WebinarIcon, label: "Webinar" },
-    { href: "/job-role", Icon: JobRoleIcon, label: "Job Role" },
+    // { href: "/job-role", Icon: JobRoleIcon, label: "Job Role" },
     { href: "/workshop", Icon: WorkshopIcon, label: "Workshop" },
     { href: "/training", Icon: TrainingIcon, label: "Training" },
-    { href: "/cart", Icon: CartIcon, label: "Keranjang" },
+    // { href: "/cart", Icon: CartIcon, label: "Keranjang" },
     { href: "/transaction", Icon: TransactionIcon, label: "Transaksi" },
-    { href: "/notification", Icon: NotificationIcon, label: "Info" },
+    // { href: "/notification", Icon: NotificationIcon, label: "Info" },
     { href: "/profile", Icon: ProfileIcon, label: "Profile" },
     { href: "/faq", Icon: HelpIcon, label: "Pusat Bantuan" },
   ];
   return (
     <div className="flex flex-col">
       <div className="min-h-20 max-h-20">
-        <NavUser navs={navs} account={account} toggleSidebar={toggleSidebar} />
+        <NavUser navs={[]} account={account} toggleSidebar={toggleSidebar} />
       </div>
       <div className="flex">
         {sidebar ? (
@@ -85,7 +84,7 @@ export default function TemplateUser({ children, account }: TemplateUserProps) {
         <div
           className={`flex flex-col h-screen overflow-x-hidden w-full xl:w-auto flex-grow xl:max-w-[calc(100%-${
             sidebar ? "16rem" : "5rem"
-          })] overflow-x-hidden transition-all duration-500 ease-in-out`}
+          })] overflow-x-hidden`}
         >
           <div className="flex flex-col flex-grow">{children}</div>
 

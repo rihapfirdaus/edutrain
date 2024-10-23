@@ -62,10 +62,10 @@ export default function TemplateCatalog(props: TemplateCatalogProps) {
         </div>
 
         <div
-          className={`flex flex-col h-full ${
+          className={`flex h-full ${
             error.status
               ? "justify-center items-center"
-              : "flex-wrap w-full gap-2"
+              : "flex-wrap w-full gap-4"
           }`}
         >
           {error.status ? (

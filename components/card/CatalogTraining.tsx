@@ -87,7 +87,7 @@ export default function CatalogTraining({ data }: CatalogTrainingProps) {
         >
           Daftar Sekarang
         </Link>
-        <div className="flex gap-2">
+        {/* <div className="flex gap-2">
           <Link
             href={"#"}
             title="Tambah ke keranjang"
@@ -102,7 +102,7 @@ export default function CatalogTraining({ data }: CatalogTrainingProps) {
           >
             <DetailIcon />
           </Link>
-        </div>
+        </div> */}
       </div>
     </CardBase>
   );

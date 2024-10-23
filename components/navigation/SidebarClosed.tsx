@@ -17,7 +17,7 @@ export default function SidebarClosed({
   pageActive,
 }: SidebarOpenProps) {
   return (
-    <nav className="fixed min-w-20 max-w-20 bg-[#0f172a] top-0 bottom-0 left-0 z-10 px-2 pt-24 pb-4 gap-4 flex flex-col items-center overflow-y-auto transition-all duration-500">
+    <nav className="fixed min-w-20 max-w-20 bg-[#0f172a] top-0 bottom-0 left-0 z-10 px-2 pt-24 pb-4 gap-4 flex flex-col items-center overflow-y-auto">
       <div className="flex flex-col w-full gap-4">
         {sidebars.map(({ href, Icon, label }) => (
           <Link

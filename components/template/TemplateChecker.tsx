@@ -2,12 +2,12 @@
 import { usePathname } from "next/navigation";
 import TemplateUser from "./TemplateUser";
 import TemplateGuest from "./TemplateGuest";
-import { Account } from "@/libs/actions/auth/cookieHandler";
+import FloatingHelpCenterButton from "../custom/FloatingHelpCenterButton";
 
 interface TemplateCheckerProps {
   auth: boolean;
   children: React.ReactNode;
-  account: Account | null;
+  account: any | null;
 }
 
 export default function TemplateChecker({
@@ -25,9 +25,15 @@ export default function TemplateChecker({
       {isAuthPage ? (
         children
       ) : auth ? (
-        <TemplateUser account={account}>{children}</TemplateUser>
+        <>
+          <TemplateUser account={account}>{children}</TemplateUser>
+          <FloatingHelpCenterButton />
+        </>
       ) : (
-        <TemplateGuest>{children}</TemplateGuest>
+        <>
+          <TemplateGuest>{children}</TemplateGuest>
+          <FloatingHelpCenterButton />
+        </>
       )}
     </>
   );

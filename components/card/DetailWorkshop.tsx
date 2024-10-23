@@ -17,7 +17,7 @@ export default function DetailWorkshop({ data }: DetailWorkshopProps) {
   const price = data.lastWorkshopHistory.price;
 
   return (
-    <CardBase className="flex-col min-w-80 xl:max-w-96 p-4 h-fit relative">
+    <CardBase className="flex-col w-full min-w-80 xl:max-w-96 p-4 h-fit relative">
       <h4 className="text-xl font-bold">Rincian Workshop:</h4>
       <p className="flex items-center gap-2">
         <InstructorIcon />
@@ -63,12 +63,12 @@ export default function DetailWorkshop({ data }: DetailWorkshopProps) {
         Daftar Sekarang
       </Link>
 
-      <Link
+      {/* <Link
         href={"#"}
         className="font-bold rounded-lg p-2 bg-gray-300 text-center"
       >
         Tambah ke Keranjang
-      </Link>
+      </Link> */}
     </CardBase>
   );
 }

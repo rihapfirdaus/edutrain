@@ -57,8 +57,10 @@ export default function FloatingHelpCenterButton() {
               <Image
                 src="/logo_helper.png"
                 alt="Help Center"
-                width={142}
+                className="w-auto h-auto"
+                width={120}
                 height={138}
+                priority
               />
             </Link>
           </button>

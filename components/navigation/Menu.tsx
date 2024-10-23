@@ -1,4 +1,3 @@
-import { Account } from "@/libs/actions/auth/cookieHandler";
 import {
   LaptopMinimal as WebinarIcon,
   BriefcaseBusiness as JobRoleIcon,
@@ -11,7 +10,7 @@ import Link from "next/link";
 
 interface MenuProps {
   auth: boolean;
-  account: Account | null;
+  account: any | null;
 }
 
 export default function Menu({ auth, account }: MenuProps) {
@@ -19,8 +18,8 @@ export default function Menu({ auth, account }: MenuProps) {
     { href: "/webinar", Icon: WebinarIcon, label: "Webinar" },
     { href: "/workshop", Icon: WorkshopIcon, label: "Workshop" },
     { href: "/training", Icon: TrainingIcon, label: "Training" },
-    { href: "/job-role", Icon: JobRoleIcon, label: "Job Role" },
-    { href: "/forum-diskusi", Icon: ForumIcon, label: "Forum Diskusi" },
+    // { href: "/job-role", Icon: JobRoleIcon, label: "Job Role" },
+    // { href: "/forum-diskusi", Icon: ForumIcon, label: "Forum Diskusi" },
     { href: "/faq", Icon: HelpIcon, label: "Pusat Bantuan" },
   ];
   return (
@@ -51,7 +50,7 @@ export default function Menu({ auth, account }: MenuProps) {
           <Link
             key={href}
             href={href}
-            className="max-w-40 min-w-40 p-4 text-center bg-white text-blue-950 flex flex-col gap-2 justify-center items-center rounded-xl hover:scale-105 transition-all ease-in "
+            className="max-w-40 min-w-40 p-4 text-center bg-white text-blue-950 flex flex-col gap-2 justify-center items-center rounded-xl hover:scale-105 "
           >
             <Icon size={36} />
             <p>{label}</p>
