@@ -1,6 +1,6 @@
 import MiniPoint from "@/components/card/MiniPoint";
 import MiniProfile from "@/components/card/MiniProfile";
-import FormChangeProfile from "@/components/form/FormChangeProfile";
+import FormUpdateProfile from "@/components/form/FormUpdateProfile";
 import { getAccount } from "@/libs/actions/auth/cookieHandler";
 
 export default async function ProfilePage() {
@@ -13,7 +13,7 @@ export default async function ProfilePage() {
           <MiniPoint showAsCard />
         </div>
         <div className="w-full flex-grow">
-          <FormChangeProfile account={account} />
+          <FormUpdateProfile account={account} />
         </div>
       </div>
     </div>
