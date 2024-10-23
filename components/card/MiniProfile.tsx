@@ -5,14 +5,13 @@ import {
   Phone as PhoneIcon,
   Mail as MailIcon,
 } from "lucide-react";
-import { Account } from "@/libs/actions/auth/cookieHandler";
 import { phoneFormatter } from "@/libs/helpers/formatter/phoneFormatter";
 import ImageUser from "../custom/ImageUser";
 
 interface MiniProfileProps {
   showAsCard?: boolean;
   className?: string;
-  account: Account | null;
+  account: any | null;
 }
 
 export default function MiniProfile({

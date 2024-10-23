@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import TemplateChecker from "@/components/template/TemplateChecker";
 import { auth } from "@/libs/actions/auth/tokenHandler";
-import { getAccount } from "@/libs/actions/auth/cookieHandler";
 import FloatingHelpCenterButton from "@/components/custom/FloatingHelpCenterButton";
+import axiosInstance from "@/utils/axiosInstance";
 
 export const metadata: Metadata = {
   title: "EduTrain",
@@ -25,7 +25,24 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const isAuth = await auth();
-  const account = await getAccount();
+  let account = [];
+  let error = { status: false, message: "" };
+
+  try {
+    const response = await axiosInstance.get("/profile");
+    const accountData = response.data.data;
+    console.log(accountData);
+
+    if (!accountData || accountData.length === 0) {
+      error = { status: true, message: "Webinar belum tersedia." };
+    } else {
+      account = accountData;
+    }
+  } catch (err: any) {
+    const errorMessage = "Terjadi kesalahan, silakan coba lagi.";
+    error = { status: true, message: errorMessage };
+  }
+
   return (
     <html lang="in">
       <body>

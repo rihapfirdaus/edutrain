@@ -12,13 +12,12 @@ import MitraSection from "@/components/section/MitraSection";
 import axiosInstance from "@/utils/axiosInstance";
 import ModalLoading from "@/components/modal/ModalLoading";
 import Menu from "@/components/navigation/Menu";
-import { getAccount } from "@/libs/actions/auth/cookieHandler";
 import { auth } from "@/libs/actions/auth/tokenHandler";
 import ModalCertiport from "@/components/modal/ModalCertiport";
 
 export default async function LandingPage() {
   const isAuth = await auth();
-  const account = await getAccount();
+  let account = {};
   let banners = [];
   let webinars = [];
   let workshops = [];
@@ -27,15 +26,23 @@ export default async function LandingPage() {
   let loading = true;
 
   try {
-    const [bannerData, webinarData, workshopData, trainingData, videoData] =
-      await Promise.all([
-        axiosInstance.get("/banners"),
-        axiosInstance.get("/webinars"),
-        axiosInstance.get("/workshops"),
-        axiosInstance.get("/trainings"),
-        axiosInstance.get("/videos"),
-      ]);
+    const [
+      accountData,
+      bannerData,
+      webinarData,
+      workshopData,
+      trainingData,
+      videoData,
+    ] = await Promise.all([
+      axiosInstance.get("/profile"),
+      axiosInstance.get("/banners"),
+      axiosInstance.get("/webinars"),
+      axiosInstance.get("/workshops"),
+      axiosInstance.get("/trainings"),
+      axiosInstance.get("/videos"),
+    ]);
 
+    account = accountData.data.data;
     banners = bannerData.data.data;
     webinars = webinarData.data.data.slice(0, 3);
     workshops = workshopData.data.data.slice(0, 3);

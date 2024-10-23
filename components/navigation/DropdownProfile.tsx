@@ -4,12 +4,11 @@ import { useState } from "react";
 import { Frown as FailedIcon } from "lucide-react";
 import ModalAction from "../modal/ModalAction";
 import Link from "next/link";
-import { Account } from "@/libs/actions/auth/cookieHandler";
 import ImageUser from "../custom/ImageUser";
-import { FinalReturn, logoutAction } from "@/libs/actions/auth/actions";
+import { FinalReturn, logoutAccount } from "@/libs/actions/auth/actions";
 
 interface DropdownProfileProps {
-  account: Account | null;
+  account: any | null;
 }
 
 export default function DropdownProfile({ account }: DropdownProfileProps) {
@@ -20,7 +19,7 @@ export default function DropdownProfile({ account }: DropdownProfileProps) {
     e.preventDefault();
     setLoading(true);
 
-    const result: FinalReturn | void = await logoutAction();
+    const result: FinalReturn | void = await logoutAccount();
 
     setLoading(false);
 
