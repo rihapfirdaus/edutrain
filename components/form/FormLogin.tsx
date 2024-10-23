@@ -7,7 +7,7 @@ import { CheckCircle as SuccesIcon, Frown as FailedIcon } from "lucide-react";
 import ModalAction from "../modal/ModalAction";
 import { Input } from "../custom/Input";
 import { useRouter } from "next/navigation";
-import { FinalReturn, loginAction } from "@/libs/actions/auth/actions";
+import { FinalReturn, loginAccount } from "@/libs/actions/auth/actions";
 
 export default function FormLogin() {
   const [response, setResponse] = useState<FinalReturn>();
@@ -19,7 +19,7 @@ export default function FormLogin() {
     setLoading(true);
 
     const formData = new FormData(e.currentTarget);
-    const result: FinalReturn = await loginAction(formData);
+    const result: FinalReturn = await loginAccount(formData);
 
     setLoading(false);
     setResponse(result);

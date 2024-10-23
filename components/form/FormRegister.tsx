@@ -6,7 +6,7 @@ import { Input } from "../custom/Input";
 import { useState } from "react";
 import { CheckCircle as SuccesIcon, Frown as FailedIcon } from "lucide-react";
 import ModalAction from "../modal/ModalAction";
-import { FinalReturn, registerAction } from "@/libs/actions/auth/actions";
+import { FinalReturn, registerAccount } from "@/libs/actions/auth/actions";
 
 export default function FormRegister() {
   const [response, setResponse] = useState<FinalReturn>();
@@ -17,7 +17,7 @@ export default function FormRegister() {
     setLoading(true);
 
     const formData = new FormData(e.currentTarget);
-    const result: FinalReturn = await registerAction(formData);
+    const result: FinalReturn = await registerAccount(formData);
 
     setLoading(false);
     setResponse(result);

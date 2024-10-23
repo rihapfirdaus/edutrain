@@ -1,6 +1,5 @@
 import axiosInstance from "@/utils/axiosInstance";
 import { removeAuthToken, storeAuthToken } from "./tokenHandler";
-import { removeAccount, storeAccount } from "./cookieHandler";
 import { redirect } from "next/navigation";
 
 export interface FinalReturn {
@@ -8,7 +7,7 @@ export interface FinalReturn {
   message: string;
 }
 
-export async function loginAction(formData: FormData): Promise<FinalReturn> {
+export async function loginAccount(formData: FormData): Promise<FinalReturn> {
   let finalReturn: FinalReturn = {
     status: 0,
     message: "Login gagal, periksa koneksi internet Anda.",
@@ -30,7 +29,6 @@ export async function loginAction(formData: FormData): Promise<FinalReturn> {
 
       console.log(data.data.token);
       await storeAuthToken({ token: data.data.token });
-      await storeAccount(data.data.account);
     }
   } catch (e: any) {
     if (e.status === 404 || e.status === 401 || e.status === 400) {
@@ -49,12 +47,11 @@ export async function loginAction(formData: FormData): Promise<FinalReturn> {
   return finalReturn;
 }
 
-export async function logoutAction(): Promise<FinalReturn | void> {
+export async function logoutAccount(): Promise<FinalReturn | void> {
   let finalReturn: FinalReturn | undefined;
 
   try {
     removeAuthToken();
-    removeAccount();
   } catch (e: any) {
     finalReturn = {
       status: e.status || 500,
@@ -69,7 +66,9 @@ export async function logoutAction(): Promise<FinalReturn | void> {
   return finalReturn;
 }
 
-export async function registerAction(formData: FormData): Promise<FinalReturn> {
+export async function registerAccount(
+  formData: FormData
+): Promise<FinalReturn> {
   let finalReturn: FinalReturn = {
     status: 0,
     message: "Register gagal, periksa koneksi internet Anda.",
