@@ -10,7 +10,7 @@ export function dateFormatter(dateString: string): string {
   );
 }
 
-export function dateFormatterToInputDate(dateString: string): string {
+export function inputDateFormatter(dateString: string): string {
   const date = new Date(dateString);
   const options: Intl.DateTimeFormatOptions = {
     year: "numeric",
@@ -26,4 +26,27 @@ export function dateFormatterToInputDate(dateString: string): string {
   const day = parts.find((part) => part.type === "day")?.value;
 
   return `${year}-${month}-${day}`;
+}
+
+export function ISOFormatter(dateString: string) {
+  const regex = /(\d{2})[\/-](\d{2})[\/-](\d{4})/;
+  const match = dateString.match(regex);
+
+  if (!match) {
+    throw new Error(
+      'Invalid date format. Please use "dd/mm/yyyy" or "dd-mm-yyyy".'
+    );
+  }
+
+  const day = parseInt(match[1], 10);
+  const month = parseInt(match[2], 10) - 1;
+  const year = parseInt(match[3], 10);
+
+  const date = new Date(year, month, day);
+
+  if (isNaN(date.getTime())) {
+    throw new Error("Invalid date value.");
+  }
+
+  return date.toISOString().split("T")[0];
 }
