@@ -19,7 +19,6 @@ export async function isStillAuthorized(token: string) {
 
     return true;
   } catch (error) {
-    console.error("Error validating token:", error);
     return false;
   }
 }
