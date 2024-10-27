@@ -48,7 +48,11 @@ export function Input({
   const isControlled = value !== undefined && onChange !== undefined;
 
   return (
-    <div className={`relative w-full ${disabled && "text-[#777777]"}`}>
+    <div
+      className={`relative w-full ${
+        disabled ? "text-[#777777]" : "text-black"
+      }`}
+    >
       {label && <label className="text-black">{label}</label>}
       {inputType === "textarea" ? (
         <textarea

@@ -54,7 +54,11 @@ export function Select({
   }, [normalization]);
 
   return (
-    <div className={`relative w-full ${disabled && "text-[#777777]"}`}>
+    <div
+      className={`relative w-full ${
+        disabled ? "text-[#777777]" : "text-black"
+      }`}
+    >
       {label && <label className="text-black">{label}</label>}
 
       <input
