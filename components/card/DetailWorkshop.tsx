@@ -1,3 +1,4 @@
+"use client";
 import CardBase from "./CardBase";
 import {
   User as InstructorIcon,
@@ -7,7 +8,6 @@ import {
   Mail as MailIcon,
   User as UserIcon,
 } from "lucide-react";
-import Link from "next/link";
 import currencyFormatter from "@/libs/helpers/formatter/currencyFormatter.";
 import { Workshop } from "@/libs/entities/Workshop";
 import { Account } from "@/libs/entities/Account";
