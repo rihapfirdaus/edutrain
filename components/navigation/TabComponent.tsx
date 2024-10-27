@@ -21,8 +21,8 @@ export default function TabComponent({
         {tabs.map((item, index) => (
           <button
             key={index}
-            className={`py-2 px-4 font-bold ${
-              index === indexTab && "text-blue-500 border-b border-blue-500"
+            className={`py-2 px-4 font-bold border-b ${
+              index === indexTab && "text-blue-500 border-blue-500"
             }`}
             onClick={() => setIndexTab(index)}
           >

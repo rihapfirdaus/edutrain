@@ -2,28 +2,22 @@ import DetailWebinar from "@/components/card/DetailWebinar";
 import Image from "next/image";
 import DetailTraining from "../card/DetailTraining";
 import DetailWorkshop from "../card/DetailWorkshop";
+import { Account } from "@/libs/entities/Account";
 
 interface TemplateDetailEventProps {
   data: any;
   children: React.ReactNode;
   Card: typeof DetailWebinar | typeof DetailWorkshop | typeof DetailTraining;
-  error: { status: boolean; message: string };
+  account?: Account;
 }
 
 export default function TemplateDetailEvent({
   data,
   children,
   Card,
-  error,
 }: TemplateDetailEventProps) {
   return (
-    <div
-      className={`flex items-center flex-grow bg-[#f4f4f4] ${
-        error.status
-          ? "flex-grow justify-center items-center"
-          : "flex flex-col gap-4 pt-8 xl:gap-6 items-center"
-      }`}
-    >
+    <div className="flex items-center flex-grow bg-[#f4f4f4]  flex-col gap-4 pt-8 xl:gap-6">
       <div className="max-w-[calc(100%-1rem)] md:max-w-[calc(100%-4rem)] xl:max-w-[calc(100%-16rem)] flex flex-col w-full gap-4">
         {data && (
           <div className="flex flex-col w-full gap-4">

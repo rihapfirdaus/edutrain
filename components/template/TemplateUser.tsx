@@ -18,8 +18,6 @@ import SidebarOpen from "../navigation/SidebarOpen";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import Footer from "../navigation/Footer";
-import DropdownCart from "../navigation/DropdownCart";
-import DropdownNotification from "../navigation/DropdownNotification";
 
 interface TemplateUserProps {
   children: React.ReactNode;
@@ -41,14 +39,14 @@ export default function TemplateUser({ children, account }: TemplateUserProps) {
       : false;
   };
 
-  const navs = [
-    { Action: DropdownCart, Icon: CartIcon, label: "Keranjang", href: "/cart" },
-    {
-      Action: DropdownNotification,
-      Icon: NotificationIcon,
-      label: "Notifikasi",
-    },
-  ];
+  // const navs = [
+  //   { Action: DropdownCart, Icon: CartIcon, label: "Keranjang", href: "/cart" },
+  //   {
+  //     Action: DropdownNotification,
+  //     Icon: NotificationIcon,
+  //     label: "Notifikasi",
+  //   },
+  // ];
 
   const sidebars = [
     { href: "/", Icon: HomeIcon, label: "Semua Akses" },
@@ -57,7 +55,7 @@ export default function TemplateUser({ children, account }: TemplateUserProps) {
     { href: "/workshop", Icon: WorkshopIcon, label: "Workshop" },
     { href: "/training", Icon: TrainingIcon, label: "Training" },
     // { href: "/cart", Icon: CartIcon, label: "Keranjang" },
-    { href: "/transaction", Icon: TransactionIcon, label: "Transaksi" },
+    // { href: "/transaction", Icon: TransactionIcon, label: "Transaksi" },
     // { href: "/notification", Icon: NotificationIcon, label: "Info" },
     { href: "/profile", Icon: ProfileIcon, label: "Profile" },
     { href: "/faq", Icon: HelpIcon, label: "Pusat Bantuan" },
@@ -65,7 +63,7 @@ export default function TemplateUser({ children, account }: TemplateUserProps) {
   return (
     <div className="flex flex-col">
       <div className="min-h-20 max-h-20">
-        <NavUser navs={[]} account={account} toggleSidebar={toggleSidebar} />
+        <NavUser account={account} toggleSidebar={toggleSidebar} />
       </div>
       <div className="flex">
         {sidebar ? (
