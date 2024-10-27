@@ -1,30 +1,18 @@
-"use server";
 import HistoryTraining from "@/components/card/HistoryTraining";
 import { TabLinkItem } from "@/components/navigation/TabLink";
 import TemplateCatalog from "@/components/template/TemplateCatalog";
-import { auth } from "@/libs/actions/auth/tokenHandler";
+import { auth } from "@/libs/actions/tokenHandler";
+import { Error, ErrorMessage } from "@/libs/entities/Error";
+import { getRegisteredTrainings } from "@/libs/fetchs/fetchTraining";
 import axiosInstance from "@/utils/axiosInstance";
 
 export default async function HistoryTrainingPage() {
   const isAuth = await auth();
+  const trainings = await getRegisteredTrainings();
+  let error: Error = { status: false, message: ErrorMessage.None };
 
-  let trainings = [];
-  let error = { status: false, message: "" };
-  try {
-    const response = await axiosInstance.get("/trainings");
-    const trainingData = response.data.data;
-
-    if (!trainingData || trainingData.length === 0) {
-      error = { status: true, message: "Training belum tersedia." };
-    } else {
-      trainings = trainingData;
-    }
-  } catch (err: any) {
-    const errorMessage =
-      err.response?.status === 404
-        ? "Training belum tersedia."
-        : "Terjadi kesalahan, silakan coba lagi.";
-    error = { status: true, message: errorMessage };
+  if (trainings === null || trainings.length === 0) {
+    error = { status: true, message: ErrorMessage.Empty };
   }
 
   const tabs: TabLinkItem[] = [

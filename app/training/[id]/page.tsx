@@ -1,53 +1,48 @@
-"use client";
-
 import CatalogTraining from "@/components/card/CatalogTraining";
 import DetailTraining from "@/components/card/DetailTraining";
 import HighlightCatalog from "@/components/highlight/HighlightCatalog";
-import HighlightRating from "@/components/highlight/HighlightRating";
 import TemplateDetailEvent from "@/components/template/TemplateDetailEvent";
-import axiosInstance from "@/utils/axiosInstance";
-import { useEffect, useState } from "react";
+import TemplateHistoryEvent from "@/components/template/TemplateHistoryEvent";
+import { auth } from "@/libs/actions/tokenHandler";
+import { Account } from "@/libs/entities/Account";
+import { Training } from "@/libs/entities/Training";
+import { getAccount } from "@/libs/fetchs/fetchAccount";
+import {
+  getNewestTrainings,
+  getTrainingById,
+} from "@/libs/fetchs/fetchTraining";
 
 interface TrainingDetailProps {
-  params: any;
+  params: Training;
 }
 
-export default function TrainingDetail({ params }: TrainingDetailProps) {
-  const [training, setTraining] = useState<any>();
-  const [trainings, setTrainings] = useState([]);
-  const [error, setError] = useState({ status: false, message: "" });
+export default async function TrainingDetail({ params }: TrainingDetailProps) {
+  const isAuth = await auth();
 
-  useEffect(() => {
-    const fetchTrainings = async () => {
-      try {
-        const [trainingData, trainingsData] = await Promise.all([
-          axiosInstance.get(`trainings/${params.id}`),
-          axiosInstance.get("/trainings"),
-        ]);
-
-        setTraining(trainingData.data.data);
-        setTrainings(trainingsData.data.data.slice(0, 3));
-      } catch (err: any) {
-        setError({
-          status: true,
-          message: "Terjadi kesalahan, silakan coba lagi.",
-        });
-      }
-    };
-
-    fetchTrainings();
-  }, []);
+  const training: Training = await getTrainingById(params.id);
+  const trainings: Training[] = await getNewestTrainings();
+  const account: Account = await getAccount();
 
   return (
-    <TemplateDetailEvent Card={DetailTraining} data={training} error={error}>
-      <HighlightRating />
-      <HighlightCatalog
-        title="Training Terbaru"
-        desc="Cek daftar training yang akan datang di bawah ini."
-        hrefSeeMore="/training"
-        Card={CatalogTraining}
-        data={trainings}
-      />
-    </TemplateDetailEvent>
+    <>
+      {isAuth && training.isRegistered ? (
+        <TemplateHistoryEvent
+          account={account}
+          entity="Training"
+          Card={DetailTraining}
+          data={training}
+        />
+      ) : (
+        <TemplateDetailEvent Card={DetailTraining} data={training}>
+          <HighlightCatalog
+            title="Training Terbaru"
+            desc="Cek daftar training yang akan datang di bawah ini."
+            hrefSeeMore="/training"
+            Card={CatalogTraining}
+            data={trainings}
+          />
+        </TemplateDetailEvent>
+      )}
+    </>
   );
 }

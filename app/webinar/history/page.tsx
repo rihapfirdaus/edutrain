@@ -2,29 +2,17 @@
 import HistoryWebinar from "@/components/card/HistoryWebinar";
 import { TabLinkItem } from "@/components/navigation/TabLink";
 import TemplateCatalog from "@/components/template/TemplateCatalog";
-import { auth } from "@/libs/actions/auth/tokenHandler";
-import axiosInstance from "@/utils/axiosInstance";
+import { auth } from "@/libs/actions/tokenHandler";
+import { Error, ErrorMessage } from "@/libs/entities/Error";
+import { getRegisteredWebinars } from "@/libs/fetchs/fetchWebinar";
 
 export default async function HistoryWebinarPage() {
   const isAuth = await auth();
+  const webinars = await getRegisteredWebinars();
+  let error: Error = { status: false, message: ErrorMessage.None };
 
-  let webinars = [];
-  let error = { status: false, message: "" };
-  try {
-    const response = await axiosInstance.get("/webinars");
-    const webinarData = response.data.data;
-
-    if (!webinarData || webinarData.length === 0) {
-      error = { status: true, message: "Webinar belum tersedia." };
-    } else {
-      webinars = webinarData;
-    }
-  } catch (err: any) {
-    const errorMessage =
-      err.response?.status === 404
-        ? "Webinar belum tersedia."
-        : "Terjadi kesalahan, silakan coba lagi.";
-    error = { status: true, message: errorMessage };
+  if (webinars === null || webinars.length === 0) {
+    error = { status: true, message: ErrorMessage.Empty };
   }
 
   const tabs: TabLinkItem[] = [
