@@ -10,12 +10,14 @@ import HighlightCatalog from "@/components/highlight/HighlightCatalog";
 import HighlightMedia from "@/components/highlight/HighlightMedia";
 import MitraSection from "@/components/section/MitraSection";
 import axiosInstance from "@/utils/axiosInstance";
-import ModalLoading from "@/components/modal/ModalLoading";
 import Menu from "@/components/navigation/Menu";
-import { auth } from "@/libs/actions/auth/tokenHandler";
+import { auth } from "@/libs/actions/tokenHandler";
 import ModalCertiport from "@/components/modal/ModalCertiport";
+import { loadingService } from "@/libs/services/LoadingService";
 
 export default async function LandingPage() {
+  loadingService.showLoading();
+
   const isAuth = await auth();
   let account = {};
   let banners = [];
@@ -23,7 +25,6 @@ export default async function LandingPage() {
   let workshops = [];
   let trainings = [];
   let videos = [];
-  let loading = true;
 
   try {
     const [
@@ -44,18 +45,17 @@ export default async function LandingPage() {
 
     account = accountData.data.data;
     banners = bannerData.data.data;
-    webinars = webinarData.data.data.slice(0, 3);
-    workshops = workshopData.data.data.slice(0, 3);
-    trainings = trainingData.data.data.slice(0, 3);
-    videos = videoData.data.data.slice(0, 3);
-    loading = false;
+    webinars = webinarData.data.data.slice(0, 4);
+    workshops = workshopData.data.data.slice(0, 4);
+    trainings = trainingData.data.data.slice(0, 4);
+    videos = videoData.data.data.slice(0, 4);
+
+    loadingService.hideLoading();
   } catch (error) {
-    console.log("Error fetching data:", error);
-    loading = false;
+    loadingService.hideLoading();
   }
   return (
     <>
-      <ModalLoading isLoading={loading} />
       <ModalCertiport />
       <Carousel slides={banners} />
       <Menu auth={isAuth} account={account} />
