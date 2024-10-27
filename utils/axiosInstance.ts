@@ -1,4 +1,4 @@
-import { getAuthToken } from "@/libs/actions/auth/tokenHandler";
+import { getAuthToken } from "@/libs/actions/tokenHandler";
 import axios from "axios";
 
 const axiosInstance = axios.create({
@@ -6,8 +6,8 @@ const axiosInstance = axios.create({
 });
 
 axiosInstance.interceptors.request.use(
-  (config) => {
-    const token = getAuthToken();
+  async (config) => {
+    const token = await getAuthToken();
 
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
