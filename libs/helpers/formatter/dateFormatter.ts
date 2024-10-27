@@ -29,18 +29,18 @@ export function inputDateFormatter(dateString: string): string {
 }
 
 export function ISOFormatter(dateString: string) {
-  const regex = /(\d{2})[\/-](\d{2})[\/-](\d{4})/;
+  const regex = /(\d{4})[\/-](\d{2})[\/-](\d{2})/;
   const match = dateString.match(regex);
 
   if (!match) {
     throw new Error(
-      'Invalid date format. Please use "dd/mm/yyyy" or "dd-mm-yyyy".'
+      'Invalid date format. Please use "yyyy-mm-dd" or "yyyy/mm/dd".'
     );
   }
 
-  const day = parseInt(match[1], 10);
+  const year = parseInt(match[1], 10);
   const month = parseInt(match[2], 10) - 1;
-  const year = parseInt(match[3], 10);
+  const day = parseInt(match[3], 10);
 
   const date = new Date(year, month, day);
 
