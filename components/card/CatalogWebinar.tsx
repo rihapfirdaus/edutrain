@@ -1,15 +1,35 @@
+"use client";
+
 import Image from "next/image";
 import CardBase from "./CardBase";
 import { Calendar as DateIcon, AlarmClock as TimeIcon } from "lucide-react";
 import timeFormatter from "@/libs/helpers/formatter/timeFormatter";
 import Link from "next/link";
 import { dateFormatter } from "@/libs/helpers/formatter/dateFormatter";
+import {
+  EventStatus,
+  eventStatusChecker,
+} from "@/libs/helpers/eventStatusChecker";
+import { actionRegisterEvent } from "@/libs/actions/actionRegisterEvent";
+import { useState } from "react";
+import { Webinar } from "@/libs/entities/Webinar";
 
 interface CatalogWebinarProps {
-  data: any;
+  data: Webinar;
 }
 
 export default function CatalogWebinar({ data }: CatalogWebinarProps) {
+  const statusEvent = eventStatusChecker(data.createdAt, data.startTime);
+  const [process, setProcess] = useState(false);
+
+  const handleRegister = async () => {
+    setProcess(true);
+    const formData = new FormData();
+    formData.append("eventId", data.id);
+
+    await actionRegisterEvent(formData);
+    setProcess(false);
+  };
   return (
     <CardBase
       showStatus
@@ -25,7 +45,7 @@ export default function CatalogWebinar({ data }: CatalogWebinarProps) {
         className="h-44 object-cover object-center"
       />
 
-      <Link href={`/webinar/${data.id}`} className="flex flex-col gap-2 p-2">
+      <Link href={`/webinar/${data.id}`} className="flex flex-col gap-2 p-4">
         <div className="flex justify-between items-center flex-wrap">
           <p className="flex gap-2 text-sm items-center">
             <DateIcon size={20} />
@@ -52,13 +72,24 @@ export default function CatalogWebinar({ data }: CatalogWebinarProps) {
         </div>
       </Link>
 
-      <div className="flex flex-col gap-2 p-2">
-        <Link
-          href={"#"}
-          className="text-white font-bold rounded-lg p-2 bg-[#0041A1] text-center"
+      <div className="flex flex-col gap-2 p-4">
+        <button
+          onClick={handleRegister}
+          className="text-white font-bold rounded-lg p-2 bg-[#0041A1] text-center disabled:bg-[#d4d4d4] disabled:text-black"
+          disabled={
+            process || data.isRegistered || statusEvent.status === "expired"
+          }
         >
-          Daftar Sekarang
-        </Link>
+          {process ? (
+            <span className="animate-pulse">{EventStatus.Registering}</span>
+          ) : data.isRegistered ? (
+            EventStatus.Registered
+          ) : statusEvent.status === "expired" ? (
+            EventStatus.Past
+          ) : (
+            EventStatus.Open
+          )}
+        </button>
       </div>
     </CardBase>
   );

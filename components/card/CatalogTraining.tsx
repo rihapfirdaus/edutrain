@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import CardBase from "./CardBase";
 import {
@@ -8,14 +10,33 @@ import {
 import Link from "next/link";
 import currencyFormatter from "@/libs/helpers/formatter/currencyFormatter.";
 import { dateFormatter } from "@/libs/helpers/formatter/dateFormatter";
+import { actionRegisterEvent } from "@/libs/actions/actionRegisterEvent";
+import {
+  EventStatus,
+  eventStatusChecker,
+} from "@/libs/helpers/eventStatusChecker";
+import { useState } from "react";
+import { Training } from "@/libs/entities/Training";
 
 interface CatalogTrainingProps {
-  data: any;
+  data: Training;
 }
 
 export default function CatalogTraining({ data }: CatalogTrainingProps) {
-  const discount = data.lastTrainingHistory.discount;
-  const price = data.lastTrainingHistory.price;
+  const statusEvent = eventStatusChecker(data.createdAt, data.startTime);
+  const [process, setProcess] = useState(false);
+
+  const handleRegister = async () => {
+    setProcess(true);
+    const formData = new FormData();
+    formData.append("eventId", data.id);
+
+    await actionRegisterEvent(formData);
+    setProcess(false);
+  };
+
+  const discount = parseInt(data.lastTrainingHistory.discount || "0");
+  const price = parseInt(data.lastTrainingHistory.price || "0");
 
   return (
     <CardBase
@@ -32,7 +53,7 @@ export default function CatalogTraining({ data }: CatalogTrainingProps) {
         className="h-44 object-cover object-center"
       />
 
-      <Link href={`/training/${data.id}`} className="flex flex-col gap-2 p-2">
+      <Link href={`/training/${data.id}`} className="flex flex-col gap-2 p-4">
         <div className="flex justify-between items-center flex-wrap">
           <p className="flex gap-2 text-sm items-center">
             <DateIcon size={20} />
@@ -49,7 +70,7 @@ export default function CatalogTraining({ data }: CatalogTrainingProps) {
           {data.title}
         </h4>
 
-        {discount != null && (
+        {discount > 0 && (
           <div className="flex justify-between flex-wrap">
             <p className="flex gap-2 text-sm items-center line-through">
               {currencyFormatter(price)}
@@ -80,13 +101,24 @@ export default function CatalogTraining({ data }: CatalogTrainingProps) {
         </div>
       </Link>
 
-      <div className="flex flex-col gap-2 p-2">
-        <Link
-          href={"#"}
-          className="text-white font-bold rounded-lg p-2 bg-[#0041A1] text-center"
+      <div className="flex flex-col gap-2 p-4">
+        <button
+          onClick={handleRegister}
+          className="text-white font-bold rounded-lg p-2 bg-[#0041A1] text-center disabled:bg-[#d4d4d4] disabled:text-black"
+          disabled={
+            process || data.isRegistered || statusEvent.status === "expired"
+          }
         >
-          Daftar Sekarang
-        </Link>
+          {process ? (
+            <span className="animate-pulse">{EventStatus.Registering}</span>
+          ) : data.isRegistered ? (
+            EventStatus.Registered
+          ) : statusEvent.status === "expired" ? (
+            EventStatus.Past
+          ) : (
+            EventStatus.Open
+          )}
+        </button>
         {/* <div className="flex gap-2">
           <Link
             href={"#"}

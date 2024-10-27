@@ -1,16 +1,36 @@
+"use client";
+
 import Image from "next/image";
 import CardBase from "./CardBase";
-import { ShoppingCart as CartIcon, List as DetailIcon } from "lucide-react";
 import Link from "next/link";
 import currencyFormatter from "@/libs/helpers/formatter/currencyFormatter.";
+import {
+  EventStatus,
+  eventStatusChecker,
+} from "@/libs/helpers/eventStatusChecker";
+import { actionRegisterEvent } from "@/libs/actions/actionRegisterEvent";
+import { useState } from "react";
+import { Workshop } from "@/libs/entities/Workshop";
 
 interface CatalogWorkshopProps {
-  data: any;
+  data: Workshop;
 }
 
 export default function CatalogWorkshop({ data }: CatalogWorkshopProps) {
-  const discount = data.lastWorkshopHistory.discount;
-  const price = data.lastWorkshopHistory.price;
+  const statusEvent = eventStatusChecker(data.createdAt, data.startTime);
+  const [process, setProcess] = useState(false);
+
+  const handleRegister = async () => {
+    setProcess(true);
+    const formData = new FormData();
+    formData.append("eventId", data.id);
+
+    await actionRegisterEvent(formData);
+    setProcess(false);
+  };
+
+  const discount = parseInt(data.lastWorkshopHistory.discount || "0");
+  const price = parseInt(data.lastWorkshopHistory.price || "0");
 
   return (
     <CardBase
@@ -27,7 +47,7 @@ export default function CatalogWorkshop({ data }: CatalogWorkshopProps) {
         className="h-44 object-cover object-center"
       />
 
-      <Link href={`/workshop/${data.id}`} className="flex flex-col gap-2 p-2">
+      <Link href={`/workshop/${data.id}`} className="flex flex-col gap-2 p-4">
         <h4
           className="text-xl font-bold truncate overflow-hidden whitespace-nowrap"
           title={data.title}
@@ -35,7 +55,7 @@ export default function CatalogWorkshop({ data }: CatalogWorkshopProps) {
           {data.title}
         </h4>
 
-        {discount != null && (
+        {discount > 0 && (
           <div className="flex justify-between flex-wrap">
             <p className="flex gap-2 text-sm items-center line-through">
               {currencyFormatter(price)}
@@ -66,13 +86,24 @@ export default function CatalogWorkshop({ data }: CatalogWorkshopProps) {
         </div>
       </Link>
 
-      <div className="flex flex-col gap-2 p-2">
-        <Link
-          href={"#"}
-          className="text-white font-bold rounded-lg p-2 bg-[#0041A1] text-center"
+      <div className="flex flex-col gap-2 p-4">
+        <button
+          onClick={handleRegister}
+          className="text-white font-bold rounded-lg p-2 bg-[#0041A1] text-center disabled:bg-[#d4d4d4] disabled:text-black"
+          disabled={
+            process || data.isRegistered || statusEvent.status === "expired"
+          }
         >
-          Daftar Sekarang
-        </Link>
+          {process ? (
+            <span className="animate-pulse">{EventStatus.Registering}</span>
+          ) : data.isRegistered ? (
+            EventStatus.Registered
+          ) : statusEvent.status === "expired" ? (
+            EventStatus.Past
+          ) : (
+            EventStatus.Open
+          )}
+        </button>
         {/* <div className="flex gap-2">
           <Link
             href={"#"}
