@@ -8,13 +8,14 @@ import CatalogWorkshop from "../card/CatalogWorkshop";
 import ModalEmpty from "@/components/modal/ModalEmpty";
 import TabLink, { TabLinkItem } from "../navigation/TabLink";
 import { Input } from "../custom/Input";
+import { Error } from "@/libs/entities/Error";
 
 interface TemplateCatalogWithCard {
   title: string;
   entity: string;
   Card: typeof CatalogWebinar | typeof CatalogTraining | typeof CatalogWorkshop;
   data: any[];
-  error: { status: boolean; message: string };
+  error: Error;
   auth: boolean;
   tabs?: TabLinkItem[];
 }
@@ -22,7 +23,7 @@ interface TemplateCatalogWithCard {
 interface TemplateCatalogWithChildren {
   title: string;
   entity: string;
-  error: { status: boolean; message: string };
+  error: Error;
   auth: boolean;
   tabs?: TabLinkItem[];
   children: React.ReactNode;
