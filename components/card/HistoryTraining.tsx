@@ -9,9 +9,10 @@ import {
 import timeFormatter from "@/libs/helpers/formatter/timeFormatter";
 import Link from "next/link";
 import { dateFormatter } from "@/libs/helpers/formatter/dateFormatter";
+import { Training } from "@/libs/entities/Training";
 
 interface HistoryTrainingProps {
-  data: any;
+  data: Training;
 }
 
 export default function HistoryTraining({ data }: HistoryTrainingProps) {
@@ -30,7 +31,7 @@ export default function HistoryTraining({ data }: HistoryTrainingProps) {
       />
 
       <div className="flex flex-col justify-center gap-2 p-2">
-        <Link href={`/training/history/${data.id}`}>
+        <div>
           <h4
             className="text-2xl font-bold truncate overflow-hidden whitespace-nowrap px-2"
             title={data.title}
@@ -51,10 +52,16 @@ export default function HistoryTraining({ data }: HistoryTrainingProps) {
             </p>
             {data.certificate != null && <p className="px-2">"Sertifikat"</p>}
           </div>
-        </Link>
+        </div>
 
         <div className="flex flex-col lg:flex-row gap-2 px-2 mt-2">
           <Link
+            href={`/training/${data.id}`}
+            className="flex gap-2 min-w-52 justify-center items-center font-bold rounded-lg p-2 border-2"
+          >
+            Lihat detail
+          </Link>
+          {/* <Link
             href={"#"}
             className="flex gap-2 min-w-52 justify-center items-center font-bold rounded-lg p-2 border-2"
           >
@@ -67,7 +74,7 @@ export default function HistoryTraining({ data }: HistoryTrainingProps) {
           >
             <QuestionIcon />
             Pertanyaan
-          </Link>
+          </Link> */}
         </div>
       </div>
     </CardBase>

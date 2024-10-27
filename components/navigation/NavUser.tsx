@@ -2,23 +2,21 @@ import { LucideIcon, UserIcon } from "lucide-react";
 import Image from "next/image";
 import Dropdown from "./Dropdown";
 import DropdownProfile from "./DropdownProfile";
-import DropdownNotification from "./DropdownNotification";
-import DropdownCart from "./DropdownCart";
 
-interface NavItem {
-  Action: typeof DropdownCart | typeof DropdownNotification;
-  Icon: LucideIcon;
-  label: string;
-}
+// interface NavItem {
+//   Action: typeof DropdownCart | typeof DropdownNotification;
+//   Icon: LucideIcon;
+//   label: string;
+// }
 
 interface NavUserProps {
-  navs: NavItem[];
+  // navs: NavItem[];
   toggleSidebar: () => void;
   account: any | null;
 }
 
 export default function NavUser({
-  navs,
+  // navs,
   toggleSidebar,
   account,
 }: NavUserProps) {
@@ -37,7 +35,7 @@ export default function NavUser({
             />
           </button>
           <section className="flex gap-2 md:gap-4 text-white">
-            {navs.map(({ Action, Icon, label }) => (
+            {/* {navs.map(({ Action, Icon, label }) => (
               <Dropdown key={label}>
                 <button
                   title={label}
@@ -48,7 +46,7 @@ export default function NavUser({
                 </button>
                 <Action />
               </Dropdown>
-            ))}
+            ))} */}
             <Dropdown>
               <button
                 title="Akun"
