@@ -7,9 +7,7 @@ import {
   inputDateFormatter,
   ISOFormatter,
 } from "@/libs/helpers/formatter/dateFormatter";
-import { CheckCircle as SuccesIcon, Frown as FailedIcon } from "lucide-react";
-import ModalAction from "../modal/ModalAction";
-import { FinalReturn, updateProfile } from "@/libs/actions/account/actions";
+import { ActionUpdateProfile } from "@/libs/actions/actionUpdateProfile";
 
 interface FormUpdateProfileProps {
   account: any | null;
@@ -21,7 +19,7 @@ export default function FormUpdateProfile({ account }: FormUpdateProfileProps) {
   const [username, setUsername] = useState(account?.username || "");
   const [gender, setGender] = useState(account?.gender || "");
   const [birthdate, setBirthdate] = useState(
-    account?.birthdate || "01-01-2001"
+    inputDateFormatter(account?.birthdate) || "2001-01-01"
   );
   const [organization, setOrganization] = useState(account?.organization || "");
   const [university, setUniversity] = useState(account?.university || "");
@@ -30,13 +28,13 @@ export default function FormUpdateProfile({ account }: FormUpdateProfileProps) {
 
   const [editMode, setEditMode] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [response, setResponse] = useState<FinalReturn>();
 
   const handleEditMode = () => setEditMode(!editMode);
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
 
+    console.log(birthdate);
     const formData = new FormData();
     formData.append("id", account.id);
     formData.append("fullname", fullname);
@@ -56,16 +54,15 @@ export default function FormUpdateProfile({ account }: FormUpdateProfileProps) {
     formData.append("phone", phone);
     formData.append("address", address);
 
-    const result: FinalReturn = await updateProfile(formData);
+    await ActionUpdateProfile(formData);
 
     setLoading(false);
-    setResponse(result);
   };
 
   return (
     <>
-      <CardBase className="flex-col p-4 md:p-8">
-        <h1 className="text-xl font-bold">
+      <CardBase className="flex-col p-4 md:p-8 w-full">
+        <h1 className="text-xl font-bold text-center">
           {editMode ? "Edit Profil" : "Profil Anda"}
         </h1>
         <form onSubmit={handleSubmit} className="flex flex-col gap-2">
@@ -77,7 +74,7 @@ export default function FormUpdateProfile({ account }: FormUpdateProfileProps) {
             required
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            disabled
+            disabled={loading || !editMode}
           />
 
           <Input
@@ -118,7 +115,7 @@ export default function FormUpdateProfile({ account }: FormUpdateProfileProps) {
             type="date"
             placeholder="Tanggal Lahir"
             name="birthdate"
-            value={inputDateFormatter(birthdate)}
+            value={birthdate}
             onChange={(e) => setBirthdate(e.target.value)}
             required
             disabled={loading || !editMode}
@@ -200,34 +197,6 @@ export default function FormUpdateProfile({ account }: FormUpdateProfileProps) {
           )}
         </form>
       </CardBase>
-      {response?.status === 200 ? (
-        <ModalAction action={() => setResponse(undefined)}>
-          <SuccesIcon size={58} />
-          <p className="text-2xl text-center">{response.message}</p>
-          <button
-            className="text-white font-bold rounded-lg py-2 px-4 bg-[#0041A1] text-center shadow-lg hover:"
-            onClick={() => {
-              setLoading(false);
-              window.location.reload();
-            }}
-          >
-            OK
-          </button>
-        </ModalAction>
-      ) : response ? (
-        <ModalAction action={() => setResponse(undefined)}>
-          <FailedIcon size={58} />
-          <p className="text-2xl text-center">{response.message}</p>
-          <button
-            className="text-white font-bold rounded-lg py-2 px-4 bg-[#0041A1] text-center shadow-lg hover:"
-            onClick={() => setResponse(undefined)}
-          >
-            OK
-          </button>
-        </ModalAction>
-      ) : (
-        <></>
-      )}
     </>
   );
 }
