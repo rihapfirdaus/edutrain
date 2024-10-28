@@ -9,51 +9,30 @@ import Carousel from "@/components/custom/Carousel";
 import HighlightCatalog from "@/components/highlight/HighlightCatalog";
 import HighlightMedia from "@/components/highlight/HighlightMedia";
 import MitraSection from "@/components/section/MitraSection";
-import axiosInstance from "@/utils/axiosInstance";
 import Menu from "@/components/navigation/Menu";
-import { auth } from "@/libs/actions/tokenHandler";
 import ModalCertiport from "@/components/modal/ModalCertiport";
+import { auth } from "@/libs/actions/tokenHandler";
 import { loadingService } from "@/libs/services/LoadingService";
+import { getAccount } from "@/libs/fetchs/fetchAccount";
+import { getNewestWebinars } from "@/libs/fetchs/fetchWebinar";
+import { getNewestWorkshops } from "@/libs/fetchs/fetchWorkshop";
+import { getNewestTrainings } from "@/libs/fetchs/fetchTraining";
+import { getBanner } from "@/libs/fetchs/fetchBanner";
+import { getVideo } from "@/libs/fetchs/fetchVideo";
 
 export default async function LandingPage() {
   loadingService.showLoading();
 
   const isAuth = await auth();
-  let account = {};
-  let banners = [];
-  let webinars = [];
-  let workshops = [];
-  let trainings = [];
-  let videos = [];
+  const account = await getAccount();
+  const banners = await getBanner();
+  const webinars = (await getNewestWebinars()).slice(0, 4);
+  const workshops = (await getNewestWorkshops()).slice(0, 4);
+  const trainings = (await getNewestTrainings()).slice(0, 4);
+  const videos = (await getVideo()).slice(0, 3);
 
-  try {
-    const [
-      accountData,
-      bannerData,
-      webinarData,
-      workshopData,
-      trainingData,
-      videoData,
-    ] = await Promise.all([
-      axiosInstance.get("/profile"),
-      axiosInstance.get("/banners"),
-      axiosInstance.get("/webinars"),
-      axiosInstance.get("/workshops"),
-      axiosInstance.get("/trainings"),
-      axiosInstance.get("/videos"),
-    ]);
+  loadingService.hideLoading();
 
-    account = accountData.data.data;
-    banners = bannerData.data.data;
-    webinars = webinarData.data.data.slice(0, 4);
-    workshops = workshopData.data.data.slice(0, 4);
-    trainings = trainingData.data.data.slice(0, 4);
-    videos = videoData.data.data.slice(0, 4);
-
-    loadingService.hideLoading();
-  } catch (error) {
-    loadingService.hideLoading();
-  }
   return (
     <>
       <ModalCertiport />
