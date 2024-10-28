@@ -6,7 +6,6 @@ import { auth } from "@/libs/actions/tokenHandler";
 import { Error, ErrorMessage } from "@/libs/entities/Error";
 import { Workshop } from "@/libs/entities/Workshop";
 import { getNewestWorkshops } from "@/libs/fetchs/fetchWorkshop";
-import axiosInstance from "@/utils/axiosInstance";
 
 export default async function WorkshopPage() {
   const isAuth = await auth();
@@ -31,7 +30,6 @@ export default async function WorkshopPage() {
       entity="Workshop"
       Card={CatalogWorkshop}
       data={workshops}
-      error={error}
       auth={isAuth}
       tabs={tabs}
     />

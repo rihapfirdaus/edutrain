@@ -3,17 +3,11 @@ import HistoryWebinar from "@/components/card/HistoryWebinar";
 import { TabLinkItem } from "@/components/navigation/TabLink";
 import TemplateCatalog from "@/components/template/TemplateCatalog";
 import { auth } from "@/libs/actions/tokenHandler";
-import { Error, ErrorMessage } from "@/libs/entities/Error";
 import { getRegisteredWebinars } from "@/libs/fetchs/fetchWebinar";
 
 export default async function HistoryWebinarPage() {
   const isAuth = await auth();
   const webinars = await getRegisteredWebinars();
-  let error: Error = { status: false, message: ErrorMessage.None };
-
-  if (webinars === null || webinars.length === 0) {
-    error = { status: true, message: ErrorMessage.Empty };
-  }
 
   const tabs: TabLinkItem[] = [
     {
@@ -29,7 +23,6 @@ export default async function HistoryWebinarPage() {
       entity="Webinar"
       Card={HistoryWebinar}
       data={webinars}
-      error={error}
       auth={isAuth}
       tabs={tabs}
     />

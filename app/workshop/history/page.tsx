@@ -5,7 +5,6 @@ import TemplateCatalog from "@/components/template/TemplateCatalog";
 import { auth } from "@/libs/actions/tokenHandler";
 import { Error, ErrorMessage } from "@/libs/entities/Error";
 import { getRegisteredWorkshops } from "@/libs/fetchs/fetchWorkshop";
-import axiosInstance from "@/utils/axiosInstance";
 
 export default async function HistoryWorkshopPage() {
   const isAuth = await auth();
@@ -30,7 +29,6 @@ export default async function HistoryWorkshopPage() {
       entity="Workshop"
       Card={HistoryWorkshop}
       data={workshops}
-      error={error}
       auth={isAuth}
       tabs={tabs}
     />
