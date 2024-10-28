@@ -20,7 +20,7 @@ export default async function TrainingDetail({ params }: TrainingDetailProps) {
   const isAuth = await auth();
 
   const training: Training = await getTrainingById(params.id);
-  const trainings: Training[] = await getNewestTrainings();
+  const trainings: Training[] = (await getNewestTrainings()).slice(0, 4);
   const account: Account = await getAccount();
 
   return (

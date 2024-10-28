@@ -17,7 +17,7 @@ export default async function WebinarDetail({ params }: WebinarDetailProps) {
   const isAuth = await auth();
 
   const webinar: Webinar = await getWebinarById(params.id);
-  const webinars: Webinar[] = await getNewestWebinars();
+  const webinars: Webinar[] = (await getNewestWebinars()).slice(0, 4);
   const account: Account = await getAccount();
 
   return (

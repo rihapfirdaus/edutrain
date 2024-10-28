@@ -17,7 +17,7 @@ export default function TemplateDetailEvent({
   Card,
 }: TemplateDetailEventProps) {
   return (
-    <div className="flex items-center flex-grow bg-[#f4f4f4]  flex-col gap-4 pt-8 xl:gap-6">
+    <main className="flex items-center flex-grow flex-col gap-4 pt-8 xl:gap-6">
       <div className="max-w-[calc(100%-1rem)] md:max-w-[calc(100%-4rem)] xl:max-w-[calc(100%-16rem)] flex flex-col w-full gap-4">
         {data && (
           <div className="flex flex-col w-full gap-4">
@@ -39,7 +39,7 @@ export default function TemplateDetailEvent({
           </div>
         )}
       </div>
-      {children}
-    </div>
+      <div className="w-full">{children}</div>
+    </main>
   );
 }

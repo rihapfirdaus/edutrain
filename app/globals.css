@@ -2,10 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  background-color: #f4f4f4;
+}
+
 main > div:nth-child(odd) {
   background-color: #f4f4f4;
 }
 
+main > div:nth-child(even) {
+  background-color: #ffff;
+}
 /* :root {
   --background: #ffffff;
   --foreground: #171717;

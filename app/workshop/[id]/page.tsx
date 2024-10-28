@@ -20,7 +20,7 @@ export default async function WorkshopDetail({ params }: WorkshopDetailProps) {
   const isAuth = await auth();
 
   const workshop: Workshop = await getWorkshopById(params.id);
-  const workshops: Workshop[] = await getNewestWorkshops();
+  const workshops: Workshop[] = (await getNewestWorkshops()).slice(0, 4);
   const account: Account = await getAccount();
 
   return (

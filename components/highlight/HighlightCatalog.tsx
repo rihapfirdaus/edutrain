@@ -21,25 +21,29 @@ export default function HighlightCatalog({
   data,
 }: HighlightCatalogProps) {
   return (
-    <>
-      {data.length > 0 && (
-        <div className="w-full py-8 flex flex-col gap-2 px-2 justify-center items-center bg-white">
-          <h2 className="text-xl lg:text-3xl font-bold text-center">{title}</h2>
-          <p className="lg:text-lg text-center">{desc}</p>
-          <ScrollableParent>
-            {data.map((item) => (
-              <Card key={item.id} data={item} />
-            ))}
-          </ScrollableParent>
-          <Link
-            href={hrefSeeMore}
-            className="gap-2 text-center w-fit flex justify-center items-center hover:text-blue-500"
-          >
-            <span>Lihat selengkapnya</span>
-            <SeeMoreIcon />
-          </Link>
-        </div>
-      )}
-    </>
+    <div className="w-full flex flex-col justify-center items-center">
+      <div className="max-w-[calc(100%-1rem)] md:max-w-[calc(100%-4rem)] xl:max-w-[calc(100%-16rem)] flex flex-col w-full gap-4">
+        {data.length > 0 && (
+          <div className="w-full py-8 flex flex-col gap-2 px-2 justify-center items-center">
+            <h2 className="text-xl lg:text-3xl font-bold text-center">
+              {title}
+            </h2>
+            <p className="lg:text-lg text-center">{desc}</p>
+            <ScrollableParent>
+              {data.map((item) => (
+                <Card key={item.id} data={item} />
+              ))}
+            </ScrollableParent>
+            <Link
+              href={hrefSeeMore}
+              className="gap-2 text-center w-fit flex justify-center items-center hover:text-blue-500"
+            >
+              <span>Lihat selengkapnya</span>
+              <SeeMoreIcon />
+            </Link>
+          </div>
+        )}
+      </div>
+    </div>
   );
 }
