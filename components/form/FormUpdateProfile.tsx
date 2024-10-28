@@ -34,7 +34,6 @@ export default function FormUpdateProfile({ account }: FormUpdateProfileProps) {
     e.preventDefault();
     setLoading(true);
 
-    console.log(birthdate);
     const formData = new FormData();
     formData.append("id", account.id);
     formData.append("fullname", fullname);
