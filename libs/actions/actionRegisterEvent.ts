@@ -27,14 +27,13 @@ export async function actionRegisterEvent(formData: FormData) {
       modalService.showModal({
         message: "Silakan login terlebih dahulu!",
         type: "error",
-        link: "/login",
+        link: "/auth/login",
       });
     }
   } catch (e: any) {
     modalService.showModal({
       message: ErrorMessage.System,
       type: "error",
-      link: "/login",
     });
   }
 }
