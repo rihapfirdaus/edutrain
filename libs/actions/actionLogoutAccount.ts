@@ -13,7 +13,7 @@ export async function actionLogoutAccount() {
       loadingService.hideLoading();
       redirect("/");
     }
-  } catch (e: any) {
+  } catch {
     loadingService.hideLoading();
     modalService.showModal({ message: "Logout gagal!" });
   }

@@ -13,7 +13,7 @@ export async function getAccount() {
     } else {
       return null;
     }
-  } catch (err: any) {
-    return err;
+  } catch {
+    return null;
   }
 }

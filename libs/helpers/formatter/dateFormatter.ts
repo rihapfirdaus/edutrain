@@ -1,4 +1,8 @@
 export function dateFormatter(dateString: string): string {
+  if (!dateString) {
+    return "";
+  }
+
   const dateOptions: Intl.DateTimeFormatOptions = {
     day: "2-digit",
     month: "long",
@@ -11,14 +15,22 @@ export function dateFormatter(dateString: string): string {
 }
 
 export function inputDateFormatter(dateString: string): string {
+  if (!dateString) {
+    return "";
+  }
+
   const date = new Date(dateString);
+  if (isNaN(date.getTime())) {
+    return "";
+  }
+
   const options: Intl.DateTimeFormatOptions = {
     year: "numeric",
     month: "2-digit",
     day: "2-digit",
   };
 
-  const formatter = new Intl.DateTimeFormat("en-CA", options); // format YYYY-MM-DD
+  const formatter = new Intl.DateTimeFormat("en-CA", options);
   const parts = formatter.formatToParts(date);
 
   const year = parts.find((part) => part.type === "year")?.value;

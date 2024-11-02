@@ -30,7 +30,7 @@ export async function actionRegisterEvent(formData: FormData) {
         link: "/auth/login",
       });
     }
-  } catch (e: any) {
+  } catch {
     modalService.showModal({
       message: ErrorMessage.System,
       type: "error",

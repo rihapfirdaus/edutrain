@@ -8,8 +8,8 @@ export async function getWorkshopById(workshopId: string) {
     const workshop: Workshop = response.data.data;
 
     return workshop;
-  } catch (err: any) {
-    return err;
+  } catch {
+    return null;
   }
 }
 
@@ -19,14 +19,18 @@ export async function getNewestWorkshops() {
 
     const workshops: Workshop[] = response.data.data;
 
+    if (workshops.length === 0 || workshops[0].id === undefined) {
+      return [];
+    }
+
     const filteredWorkshops = workshops.sort(
       (a, b) =>
         new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
     );
 
     return filteredWorkshops;
-  } catch (err: any) {
-    return err;
+  } catch {
+    return null;
   }
 }
 
@@ -36,6 +40,10 @@ export async function getRegisteredWorkshops() {
 
     const workshops: Workshop[] = response.data.data;
 
+    if (workshops.length === 0 || workshops[0].id === undefined) {
+      return [];
+    }
+
     const filteredWorkshops = workshops
       .filter((workshop) => workshop.isRegistered === true)
       .sort(
@@ -44,7 +52,7 @@ export async function getRegisteredWorkshops() {
       );
 
     return filteredWorkshops;
-  } catch (err: any) {
-    return err;
+  } catch {
+    return null;
   }
 }

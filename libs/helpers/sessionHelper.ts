@@ -18,7 +18,7 @@ export async function isStillAuthorized(token: string) {
     }
 
     return true;
-  } catch (error) {
+  } catch {
     return false;
   }
 }

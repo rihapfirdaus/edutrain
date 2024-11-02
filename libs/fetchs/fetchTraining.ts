@@ -8,8 +8,8 @@ export async function getTrainingById(trainingId: string) {
     const training: Training = response.data.data;
 
     return training;
-  } catch (err: any) {
-    return err;
+  } catch {
+    return null;
   }
 }
 
@@ -19,14 +19,18 @@ export async function getNewestTrainings() {
 
     const trainings: Training[] = response.data.data;
 
+    if (trainings.length === 0 || trainings[0].id === undefined) {
+      return [];
+    }
+
     const filteredTrainings = trainings.sort(
       (a, b) =>
         new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
     );
 
     return filteredTrainings;
-  } catch (err: any) {
-    return err;
+  } catch {
+    return null;
   }
 }
 
@@ -36,6 +40,10 @@ export async function getRegisteredTrainings() {
 
     const trainings: Training[] = response.data.data;
 
+    if (trainings.length === 0 || trainings[0].id === undefined) {
+      return [];
+    }
+
     const filteredTrainings = trainings
       .filter((training) => training.isRegistered === true)
       .sort(
@@ -44,7 +52,7 @@ export async function getRegisteredTrainings() {
       );
 
     return filteredTrainings;
-  } catch (err: any) {
-    return err;
+  } catch {
+    return null;
   }
 }

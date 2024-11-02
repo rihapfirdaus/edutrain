@@ -5,7 +5,7 @@ export async function getVideo() {
     const response = await axiosInstance.get(`/videos`);
     const video: any = response.data.data;
     return video;
-  } catch (err: any) {
-    return err;
+  } catch {
+    return null;
   }
 }

@@ -5,7 +5,7 @@ export async function getBanner() {
     const response = await axiosInstance.get(`/banners`);
     const banner: any = response.data.data;
     return banner;
-  } catch (err: any) {
-    return err;
+  } catch {
+    return null;
   }
 }

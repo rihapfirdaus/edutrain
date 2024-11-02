@@ -31,7 +31,7 @@ export async function ActionUpdateProfile(formData: FormData) {
         type: "success",
       });
     }
-  } catch (e: any) {
+  } catch {
     loadingService.hideLoading();
 
     modalService.showModal({
