@@ -13,9 +13,11 @@ export default function HighlightMedia({
   Card,
   data,
 }: HighlightMediaProps) {
+  const datas = data.length > 0 ? data.slice(0, 4) : data;
+
   return (
     <>
-      {data.length > 0 && (
+      {datas.length > 0 && (
         <div className="w-full py-8 flex flex-col gap-2 px-2 justify-center items-center">
           <h2 className="text-xl lg:text-3xl font-bold text-center">{title}</h2>
           <p className="lg:text-lg text-center">{desc}</p>
