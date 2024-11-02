@@ -1,9 +1,11 @@
+import { formatDateWithOffset } from "./dateFormatter";
+
 export default function timeFormatter(dateString: string) {
   if (!dateString) {
     return "";
   }
 
-  const date = new Date(dateString);
+  const date = new Date(formatDateWithOffset(dateString));
 
   if (isNaN(date.getTime())) {
     throw new Error("Invalid date string");

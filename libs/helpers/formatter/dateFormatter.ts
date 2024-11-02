@@ -1,5 +1,15 @@
+export function formatDateWithOffset(dateString: string) {
+  if (!dateString) {
+    throw new Error("Invalid date string");
+  }
+
+  const formattedDate = dateString.replace(/Z$/, "+07:00");
+
+  return formattedDate;
+}
+
 export function dateFormatter(dateString: string): string {
-  const date = new Date(dateString);
+  const date = new Date(formatDateWithOffset(dateString));
 
   if (isNaN(date.getTime())) {
     throw new Error("Invalid date string");
@@ -27,7 +37,7 @@ export function dateFormatter(dateString: string): string {
 }
 
 export function inputDateFormatter(dateString: string): string {
-  const date = new Date(dateString);
+  const date = new Date(formatDateWithOffset(dateString));
 
   if (isNaN(date.getTime())) {
     throw new Error("Invalid date string");
