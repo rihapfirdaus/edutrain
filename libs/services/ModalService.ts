@@ -1,14 +1,17 @@
 import { EventEmitter } from "events";
 
 type Modal = {
-  message: string;
-  type?: "success" | "error" | "info";
+  message: string | React.ReactNode;
+  type?: "success" | "error" | "info" | "validation";
   link?: string;
+  option?: string[];
 };
 
 class ModalService extends EventEmitter {
-  public showModal(modal: Modal) {
-    this.emit("showModal", modal);
+  public showModal(modal: Modal): Promise<boolean> {
+    return new Promise<boolean>((resolve) => {
+      this.emit("showModal", { modal, resolve }); // Pass the resolve function
+    });
   }
 
   public hideModal() {
