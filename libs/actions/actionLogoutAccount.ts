@@ -6,7 +6,8 @@ export async function actionLogoutAccount() {
   loadingService.showLoading();
   try {
     removeAuthToken();
-  } catch (err: any) {
+    loadingService.hideLoading();
+  } catch {
     loadingService.hideLoading();
     modalService.showModal({ message: "Logout gagal!" });
   }
