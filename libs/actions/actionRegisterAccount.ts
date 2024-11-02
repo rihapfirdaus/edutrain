@@ -24,7 +24,11 @@ export async function actionRegisterAccount(formData: FormData) {
 
     if (status === 201) {
       loadingService.hideLoading();
-      modalService.showModal({ message: "Register sukses!", type: "success" });
+      modalService.showModal({
+        message: "Register sukses! Silahkan login kembali..",
+        type: "success",
+        link: "/auth/login",
+      });
     }
   } catch (e: any) {
     loadingService.hideLoading();
