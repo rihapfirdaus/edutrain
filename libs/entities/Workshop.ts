@@ -12,6 +12,7 @@ export interface Workshop {
   certificate: string | null;
   playbackUrl: string | null;
   isRegistered: boolean;
+  isVerified: boolean;
   lastWorkshopHistory: WorkshopHistory;
   category: Category;
   subCategory: SubCategory;

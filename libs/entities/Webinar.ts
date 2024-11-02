@@ -11,6 +11,7 @@ export interface Webinar {
   eventType: string;
   certificate: string | null;
   isRegistered: boolean;
+  isVerified: boolean;
   lastWebinarHistory: WebinarHistory;
   category: Category;
   subCategory: SubCategory;

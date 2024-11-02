@@ -16,6 +16,7 @@ export interface Training {
   category: Category;
   subCategory: SubCategory;
   isRegistered: boolean;
+  isVerified: boolean;
   lastTrainingHistory: TrainingHistory;
 }
 
