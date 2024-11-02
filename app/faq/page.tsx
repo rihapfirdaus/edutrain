@@ -1,39 +1,15 @@
-"use client";
+"use server";
 import MiniFaq from "@/components/card/MiniFaq";
 import { Input } from "@/components/custom/Input";
 import ModalEmpty from "@/components/modal/ModalEmpty";
-import axiosInstance from "@/utils/axiosInstance";
-import { useEffect, useState } from "react";
+import { ErrorMessage } from "@/libs/entities/Error";
+import { getFaqs } from "@/libs/fetchs/fetchFaqs";
 
-export default function FaqPage() {
-  const [faqs, setFaqs] = useState([]);
-  const [error, setError] = useState({ status: false, message: "" });
-
-  useEffect(() => {
-    const fetchFaqs = async () => {
-      try {
-        const response = await axiosInstance.get("/faqs");
-        const faqData = response.data.data;
-
-        if (!faqData || faqData.length === 0) {
-          setError({ status: true, message: "FAQ belum tersedia." });
-        } else {
-          setFaqs(faqData);
-        }
-      } catch (err: any) {
-        const errorMessage =
-          err.response?.status === 404
-            ? "Faq belum tersedia."
-            : "Terjadi kesalahan, silakan coba lagi.";
-        setError({ status: true, message: errorMessage });
-      }
-    };
-
-    fetchFaqs();
-  }, []);
+export default async function FaqPage() {
+  const faqs = (await getFaqs()) ?? [];
 
   return (
-    <div className="flex flex-col items-center bg-[#f4f4f4] h-full flex-grow">
+    <div className="flex flex-col items-center bg-secondary h-full flex-grow">
       <div
         style={{
           backgroundImage:
@@ -55,17 +31,20 @@ export default function FaqPage() {
           />
         </form>
       </div>
+
       <div
-        className={`flex p-8 justify-center flex-wrap w-full max-w-[calc(100%-1rem)] md:max-w-[calc(100%-4rem)] xl:max-w-[calc(100%-16rem)] flex-grow ${
-          error.message && "items-center"
+        className={`flex h-full p-8 w-full max-w-[calc(100%-1rem)] md:max-w-[calc(100%-4rem)] xl:max-w-[calc(100%-16rem)] flex-grow ${
+          faqs === null || faqs.length === 0
+            ? "justify-center items-center"
+            : "flex-wrap w-full gap-4"
         }`}
       >
-        {error.status ? (
-          <ModalEmpty message={error.message} />
+        {faqs === null || faqs.length === 0 ? (
+          <ModalEmpty message={ErrorMessage.Empty} />
         ) : (
           <>
-            {faqs.map((item) => (
-              <MiniFaq data={item} />
+            {faqs.map((item: any) => (
+              <MiniFaq key={item.id} data={item} />
             ))}
           </>
         )}
