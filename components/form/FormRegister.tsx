@@ -67,7 +67,7 @@ export default function FormRegister() {
 
         <button
           type="submit"
-          className="text-white font-bold rounded-lg p-2 bg-[#0041A1] text-center shadow-lg"
+          className="text-white font-bold rounded-lg p-2 bg-primary text-center shadow-lg"
           disabled={loading}
         >
           {loading ? (

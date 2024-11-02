@@ -38,7 +38,7 @@ export default function ButtonPicker({
           key={index}
           onClick={() => handleClick(item)}
           className={`py-2 px-4 rounded-lg whitespace-nowrap ${
-            value.has(item) ? "bg-[#0041A1] text-white" : "bg-gray-200"
+            value.has(item) ? "bg-primary text-white" : "bg-gray-200"
           }`}
         >
           {item}

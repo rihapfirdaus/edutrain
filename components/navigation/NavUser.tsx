@@ -2,6 +2,7 @@ import { LucideIcon, UserIcon } from "lucide-react";
 import Image from "next/image";
 import Dropdown from "./Dropdown";
 import DropdownProfile from "./DropdownProfile";
+import { Account } from "@/libs/entities/Account";
 
 // interface NavItem {
 //   Action: typeof DropdownCart | typeof DropdownNotification;
@@ -12,7 +13,7 @@ import DropdownProfile from "./DropdownProfile";
 interface NavUserProps {
   // navs: NavItem[];
   toggleSidebar: () => void;
-  account: any | null;
+  account: Account | null;
 }
 
 export default function NavUser({
@@ -23,7 +24,7 @@ export default function NavUser({
   return (
     <>
       <nav className="fixed left-0 top-0 right-0 min-h-20 max-h-20 z-20">
-        <div className="flex px-4 xl:px-10 py-2 min-h-20 max-h-20 justify-between items-center bg-gradient-to-r from-[#0041A1] to-[#008ED6]">
+        <div className="flex px-4 xl:px-10 py-2 min-h-20 max-h-20 justify-between items-center bg-gradient-to-r from-primary to-[#008ED6]">
           <button onClick={toggleSidebar}>
             <Image
               src="/edutrain_logo_white.png"

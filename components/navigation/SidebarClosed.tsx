@@ -24,9 +24,9 @@ export default function SidebarClosed({
             title={label}
             key={href}
             href={href}
-            className={`flex p-2 w-full text-white rounded self-start justify-center items-center hover:bg-gradient-to-r from-[#0041A1] to-[#008ED6] ${
+            className={`flex p-2 w-full text-white rounded self-start justify-center items-center hover:bg-gradient-to-r from-primary to-[#008ED6] ${
               pageActive(href)
-                ? "bg-gradient-to-r from-[#0041A1] to-[#008ED6]"
+                ? "bg-gradient-to-r from-primary to-[#008ED6]"
                 : ""
             }`}
           >

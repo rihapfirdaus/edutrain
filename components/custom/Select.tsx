@@ -92,8 +92,8 @@ export function Select({
           {option.map((item) => (
             <p
               key={item}
-              className={`py-2 px-4 hover:bg-[#f4f4f4] select-none cursor-pointer ${
-                value === item && "bg-[#f4f4f4]"
+              className={`py-2 px-4 hover:bg-secondary select-none cursor-pointer ${
+                value === item && "bg-secondary"
               }`}
               onClick={() => {
                 setSelected(item);

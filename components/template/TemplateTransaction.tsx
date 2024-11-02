@@ -6,7 +6,7 @@ export default function TemplateTransaction({
   children,
 }: TemplateTransactionProps) {
   return (
-    <div className="flex flex-col items-center gap-4 xl:gap-6 py-8 flex-grow bg-[#f4f4f4]">
+    <div className="flex flex-col items-center gap-4 xl:gap-6 py-8 flex-grow bg-secondary">
       <div className="flex flex-col w-full gap-4 max-w-[calc(100%-1rem)] md:max-w-[calc(100%-4rem)] xl:max-w-[calc(100%-16rem)] ">
         <div className="flex flex-col md:flex-row w-full gap-4">
           <div className="flex flex-col gap-2 min-w-80 md:max-w-80 xl:max-w-96 xl:min-w-80">

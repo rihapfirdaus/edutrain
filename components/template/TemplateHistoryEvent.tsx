@@ -10,7 +10,7 @@ interface TemplateHistoryEventProps {
   data: any;
   entity: "Webinar" | "Workshop" | "Training";
   children?: React.ReactNode;
-  account: Account;
+  account: Account | null;
   Card: typeof DetailWebinar | typeof DetailWorkshop | typeof DetailTraining;
 }
 
@@ -23,7 +23,7 @@ export default function TemplateHistoryEvent({
 }: TemplateHistoryEventProps) {
   return (
     <>
-      <div className="flex items-center flex-grow bg-[#f4f4f4] flex-col gap-4 pt-8 xl:gap-6">
+      <div className="flex items-center flex-grow bg-secondary flex-col gap-4 pt-8 xl:gap-6">
         <div className="max-w-[calc(100%-1rem)] md:max-w-[calc(100%-4rem)] xl:max-w-[calc(100%-16rem)] flex flex-col w-full gap-4">
           {data && (
             <div className="flex flex-col w-full gap-4">

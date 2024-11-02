@@ -47,7 +47,7 @@ export default function NavGuest({ navlinks }: NavGuestProps) {
           ))}
         </section>
       </div>
-      <div className="flex px-4 xl:px-10 py-2 min-h-20 max-h-20 justify-between items-center bg-gradient-to-r from-[#0041A1] to-[#008ED6]">
+      <div className="flex px-4 xl:px-10 py-2 min-h-20 max-h-20 justify-between items-center bg-gradient-to-r from-primary to-[#008ED6]">
         <Link href="/">
           <Image
             src="/edutrain_logo_white.png"

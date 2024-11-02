@@ -8,11 +8,12 @@ import {
 import { phoneFormatter } from "@/libs/helpers/formatter/phoneFormatter";
 import ImageUser from "../custom/ImageUser";
 import { capitalizeEachWord } from "@/libs/helpers/formatter/stringFormatter";
+import { Account } from "@/libs/entities/Account";
 
 interface MiniProfileProps {
   showAsCard?: boolean;
   className?: string;
-  account: any | null;
+  account: Account | null;
 }
 
 export default function MiniProfile({
@@ -29,16 +30,16 @@ export default function MiniProfile({
       <ImageUser size="xl" shape="squircle" className="shadow-md" />
       <div className="flex flex-col justify-center items-center">
         <h2 className="font-bold text-xl text-center">
-          {capitalizeEachWord(account?.fullname) || "Nama"}
+          {capitalizeEachWord(account?.fullname ?? "nama lengkap")}
         </h2>
         <p className="text-center">{account?.username || "username"}</p>
       </div>
-      <div className="w-full flex flex-col lg:flex-row justify-around gap-2 border-t p-4 max-w-72 lg:max-w-none">
+      <div className="w-full flex flex-col lg:flex-row justify-around gap-2 border-t p-4  max-w-72 lg:max-w-none">
         <p className=" flex gap-2 justify-center items-center  w-full">
           <CompanyIcon
             color="#008ED6"
             size={40}
-            className="p-2 bg-[#f4f4f4] rounded-xl"
+            className="p-2 bg-secondary rounded-xl"
           />
           <span className="font-semibold flex-grow lg:flex-grow-0">
             {account?.organization || "belum diatur"}
@@ -48,7 +49,7 @@ export default function MiniProfile({
           <PhoneIcon
             color="#008ED6"
             size={40}
-            className="p-2 bg-[#f4f4f4] rounded-xl"
+            className="p-2 bg-secondary rounded-xl"
           />
           <span className="font-semibold flex-grow lg:flex-grow-0">
             {(account?.phone && phoneFormatter(account.phone)) ||
@@ -59,7 +60,7 @@ export default function MiniProfile({
           <MailIcon
             color="#008ED6"
             size={40}
-            className="p-2 bg-[#f4f4f4] rounded-xl"
+            className="p-2 bg-secondary rounded-xl"
           />
           <span className="font-semibold flex-grow lg:flex-grow-0">
             {account?.email || "belum diatur"}

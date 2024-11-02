@@ -17,7 +17,7 @@ export default function ModalComingSoon() {
         </p>
         <Link
           href={"/"}
-          className="text-white font-bold rounded-lg py-2 px-4 bg-[#0041A1] text-center shadow-lg hover:"
+          className="text-white font-bold rounded-lg py-2 px-4 bg-primary text-center shadow-lg hover:"
         >
           kembali ke dashboard
         </Link>

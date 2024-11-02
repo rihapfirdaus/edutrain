@@ -23,7 +23,7 @@ export default function HighlightProduct({
       {data.length > 0 && (
         <div className="w-full">
           <div className="flex flex-col md:flex-row w-full gap-2">
-            <p className="px-4 py-2 bg-[#0041A1] text-white rounded-lg text-center">
+            <p className="px-4 py-2 bg-primary text-white rounded-lg text-center">
               {entity}
             </p>
             <form className="flex gap-2 w-full">
@@ -35,13 +35,13 @@ export default function HighlightProduct({
               />
               <button
                 title="Cari"
-                className="px-4 py-2 bg-[#0041A1] text-white rounded-lg"
+                className="px-4 py-2 bg-primary text-white rounded-lg"
               >
                 <SearchIcon />
               </button>
               <button
                 title="Pengaturan Pencarian"
-                className="px-4 py-2 bg-[#0041A1] text-white rounded-lg"
+                className="px-4 py-2 bg-primary text-white rounded-lg"
               >
                 <SettingIcon />
               </button>

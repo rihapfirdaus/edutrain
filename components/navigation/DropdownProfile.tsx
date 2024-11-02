@@ -4,9 +4,10 @@ import Link from "next/link";
 import ImageUser from "../custom/ImageUser";
 import { actionLogoutAccount } from "@/libs/actions/actionLogoutAccount";
 import { capitalizeEachWord } from "@/libs/helpers/formatter/stringFormatter";
+import { Account } from "@/libs/entities/Account";
 
 interface DropdownProfileProps {
-  account: any | null;
+  account: Account | null;
 }
 
 export default function DropdownProfile({ account }: DropdownProfileProps) {
@@ -19,10 +20,10 @@ export default function DropdownProfile({ account }: DropdownProfileProps) {
         <ImageUser size="md" shape="squircle" className="shadow-md" />
         <div className="flex flex-col justify-center flex-grow max-w-[calc(100%-4rem)]">
           <h2 className="font-bold truncate overflow-hidden whitespace-nowrap">
-            {capitalizeEachWord(account?.fullname)}
+            {capitalizeEachWord(account?.fullname ?? "nama lengkap")}
           </h2>
           <p className="text-sm truncate overflow-hidden whitespace-nowrap">
-            {account?.username}
+            {account?.username ?? "username"}
           </p>
         </div>
       </Link>

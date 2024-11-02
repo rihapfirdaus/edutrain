@@ -42,9 +42,9 @@ export default function SidebarOpen({
           <Link
             key={href}
             href={href}
-            className={`flex gap-4 px-4 p-3 w-full text-white rounded self-start items-center hover:bg-gradient-to-r from-[#0041A1] to-[#008ED6] ${
+            className={`flex gap-4 px-4 p-3 w-full text-white rounded self-start items-center hover:bg-gradient-to-r from-primary to-[#008ED6] ${
               pageActive(href)
-                ? "bg-gradient-to-r from-[#0041A1] to-[#008ED6]"
+                ? "bg-gradient-to-r from-primary to-[#008ED6]"
                 : ""
             }`}
           >
