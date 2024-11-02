@@ -19,24 +19,59 @@ import {
 import { useState } from "react";
 import { Account } from "@/libs/entities/Account";
 import { Webinar } from "@/libs/entities/Webinar";
+import {
+  capitalizeEachWord,
+  formatUrlString,
+} from "@/libs/helpers/formatter/stringFormatter";
+import { actionPaymentEvent } from "@/libs/actions/actionPaymentEvent";
+import { useRouter } from "next/navigation";
+import currencyFormatter from "@/libs/helpers/formatter/currencyFormatter.";
+import PaymentInfo from "../custom/PaymentInfo";
 
 interface DetailWebinarProps {
   data: Webinar;
-  account?: Account;
+  account?: Account | null;
 }
 
 export default function DetailWebinar({ data, account }: DetailWebinarProps) {
   const statusEvent = eventStatusChecker(data.createdAt, data.startTime);
   const [process, setProcess] = useState(false);
+  const router = useRouter();
+
+  // const orderId: string | null = getFromSessionStorage(data.id);
 
   const handleRegister = async () => {
     setProcess(true);
+
     const formData = new FormData();
     formData.append("eventId", data.id);
+    formData.append("eventTitle", data.title);
+    formData.append("eventType", data.eventType);
 
     await actionRegisterEvent(formData);
     setProcess(false);
   };
+
+  const discount = parseInt(data.lastWebinarHistory?.discount || "0");
+  const price = parseInt(data.lastWebinarHistory?.price || "0");
+  const totalPrice = discount ? price - (discount / 100) * price : price;
+
+  const handlePayment = async () => {
+    setProcess(true);
+
+    const formData = new FormData();
+    formData.append("eventId", `${data.id}`);
+    formData.append("eventType", capitalizeEachWord(data.eventType));
+    formData.append("eventTitle", formatUrlString(data.title));
+    formData.append("eventPrice", `${totalPrice}`);
+
+    await actionPaymentEvent(formData);
+    setProcess(false);
+  };
+
+  // const handleCancelOrder = async () => {
+  //   if (orderId) await removeOrder(data.id, orderId);
+  // };
 
   return (
     <CardBase className="flex-col w-full min-w-80 xl:max-w-96 p-4 h-fit">
@@ -69,6 +104,19 @@ export default function DetailWebinar({ data, account }: DetailWebinarProps) {
         </p>
       )}
 
+      {discount != 0 && (
+        <div className="flex justify-between flex-wrap">
+          <p className="text-sm line-through">{currencyFormatter(price)}</p>
+          <p className="absolute top-2 right-2 flex gap-2 items-center bg-red-500 rounded-lg py-1 px-2 text-white">
+            {discount | 0}% OFF
+          </p>
+        </div>
+      )}
+
+      {price != 0 && (
+        <p className="font-bold text-lg">{currencyFormatter(totalPrice)}</p>
+      )}
+
       {data.isRegistered && account && (
         <>
           <h4 className="text-lg font-bold">Rincian Peserta:</h4>
@@ -85,23 +133,46 @@ export default function DetailWebinar({ data, account }: DetailWebinarProps) {
         </>
       )}
 
+      {price != 0 && statusEvent.status != "expired" && !data.isRegistered && (
+        <PaymentInfo />
+      )}
+
       <button
-        onClick={handleRegister}
-        className="text-white font-bold rounded-lg p-2 bg-[#0041A1] text-center disabled:bg-[#d4d4d4] disabled:text-black"
+        onClick={price != 0 ? handlePayment : handleRegister}
+        className="text-white font-bold rounded-lg p-2 bg-primary text-center disabled:bg-[#d4d4d4] disabled:text-black"
         disabled={
           process || data.isRegistered || statusEvent.status === "expired"
         }
       >
         {process ? (
-          <span className="animate-pulse">{EventStatus.Registering}</span>
-        ) : data.isRegistered ? (
-          EventStatus.Registered
+          <span className="animate-pulse">
+            {price != 0 ? EventStatus.Waiting : EventStatus.Registering}
+          </span>
         ) : statusEvent.status === "expired" ? (
           EventStatus.Past
+        ) : price != 0 ? (
+          data.isRegistered && data.isVerified ? (
+            EventStatus.Paid
+          ) : data.isRegistered ? (
+            EventStatus.Waiting
+          ) : (
+            EventStatus.OpenOrder
+          )
+        ) : data.isRegistered ? (
+          EventStatus.Registered
         ) : (
           EventStatus.Open
         )}
       </button>
+
+      {/* {orderId && (
+        <button
+          onClick={handleCancelOrder}
+          className="border border-dashed rounded-lg p-2 text-center disabled:bg-[#d4d4d4] disabled:text-black hover:bg-[#f1f1f1]"
+        >
+          batalkan pendaftaran
+        </button>
+      )} */}
     </CardBase>
   );
 }
