@@ -1,16 +1,17 @@
 "use client";
 import { usePathname } from "next/navigation";
-import TemplateUser from "./TemplateUser";
-import TemplateGuest from "./TemplateGuest";
+import TemplateNavUser from "./TemplateNavUser";
+import TemplateNavGuest from "./TemplateNavGuest";
 import FloatingHelpCenterButton from "../custom/FloatingHelpCenterButton";
+import { Account } from "@/libs/entities/Account";
 
 interface TemplateCheckerProps {
   auth: boolean;
   children: React.ReactNode;
-  account: any | null;
+  account: Account | null;
 }
 
-export default function TemplateChecker({
+export default function TemplateNavChecker({
   auth,
   children,
   account,
@@ -26,12 +27,12 @@ export default function TemplateChecker({
         children
       ) : auth ? (
         <>
-          <TemplateUser account={account}>{children}</TemplateUser>
+          <TemplateNavUser account={account}>{children}</TemplateNavUser>
           <FloatingHelpCenterButton />
         </>
       ) : (
         <>
-          <TemplateGuest>{children}</TemplateGuest>
+          <TemplateNavGuest>{children}</TemplateNavGuest>
           <FloatingHelpCenterButton />
         </>
       )}

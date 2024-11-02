@@ -18,13 +18,17 @@ import SidebarOpen from "../navigation/SidebarOpen";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import Footer from "../navigation/Footer";
+import { Account } from "@/libs/entities/Account";
 
 interface TemplateUserProps {
   children: React.ReactNode;
-  account: any | null;
+  account: Account | null;
 }
 
-export default function TemplateUser({ children, account }: TemplateUserProps) {
+export default function TemplateNavUser({
+  children,
+  account,
+}: TemplateUserProps) {
   const [sidebar, setSidebar] = useState(false);
 
   const pathName = usePathname();

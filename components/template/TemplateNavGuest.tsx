@@ -6,7 +6,7 @@ interface TemplateGuestProps {
   children: React.ReactNode;
 }
 
-export default function TemplateGuest({ children }: TemplateGuestProps) {
+export default function TemplateNavGuest({ children }: TemplateGuestProps) {
   const navlinks = [
     {
       href: "https://ptipd.uinsgd.ac.id/",
