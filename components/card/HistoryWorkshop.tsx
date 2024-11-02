@@ -7,10 +7,9 @@ import {
   CirclePlay as RecordIcon,
   MessageSquareMore as QuestionIcon,
 } from "lucide-react";
-import timeFormatter from "@/libs/helpers/formatter/timeFormatter";
 import Link from "next/link";
-import { dateFormatter } from "@/libs/helpers/formatter/dateFormatter";
 import { Workshop } from "@/libs/entities/Workshop";
+import { formatDateTime } from "@/libs/helpers/formatter/dateFormatter";
 
 interface HistoryWorkshopProps {
   data: Workshop;
@@ -45,11 +44,11 @@ export default function HistoryWorkshop({ data }: HistoryWorkshopProps) {
               <>
                 <p className="flex gap-2 items-center px-2">
                   <DateIcon size={20} />
-                  <span>{dateFormatter(data.startTime)}</span>
+                  <span>{formatDateTime(data.startTime).date}</span>
                 </p>
                 <p className="gap-2 items-center px-2 hidden lg:flex">
                   <TimeIcon size={20} />
-                  <span>{timeFormatter(data.startTime)}</span>
+                  <span>{formatDateTime(data.startTime).time}</span>
                 </p>
               </>
             )}

@@ -9,8 +9,6 @@ import {
   Mail as MailIcon,
   User as UserIcon,
 } from "lucide-react";
-import timeFormatter from "@/libs/helpers/formatter/timeFormatter";
-import { dateFormatter } from "@/libs/helpers/formatter/dateFormatter";
 import { actionRegisterEvent } from "@/libs/actions/actionRegisterEvent";
 import {
   EventStatus,
@@ -27,6 +25,7 @@ import { actionPaymentEvent } from "@/libs/actions/actionPaymentEvent";
 import { useRouter } from "next/navigation";
 import currencyFormatter from "@/libs/helpers/formatter/currencyFormatter.";
 import PaymentInfo from "../custom/PaymentInfo";
+import { formatDateTime } from "@/libs/helpers/formatter/dateFormatter";
 
 interface DetailWebinarProps {
   data: Webinar;
@@ -78,12 +77,13 @@ export default function DetailWebinar({ data, account }: DetailWebinarProps) {
       <h4 className="text-xl font-bold">Rincian Webinar:</h4>
       <p className="flex items-center gap-2">
         <DateIcon />
-        <span>{dateFormatter(data.startTime)}</span>
+        <span>{formatDateTime(data.startTime).date}</span>
       </p>
       <p className="flex items-center gap-2">
         <TimeIcon />
         <span>
-          {timeFormatter(data.startTime)} - {timeFormatter(data.endTime)}
+          {formatDateTime(data.startTime).time} -{" "}
+          {formatDateTime(data.endTime).time}
         </span>
       </p>
 

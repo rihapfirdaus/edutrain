@@ -8,7 +8,6 @@ import {
   User as UserIcon,
 } from "lucide-react";
 import currencyFormatter from "@/libs/helpers/formatter/currencyFormatter.";
-import { dateFormatter } from "@/libs/helpers/formatter/dateFormatter";
 import { Account } from "@/libs/entities/Account";
 import { Training } from "@/libs/entities/Training";
 import {
@@ -24,6 +23,7 @@ import {
 import { actionPaymentEvent } from "@/libs/actions/actionPaymentEvent";
 import { useRouter } from "next/navigation";
 import PaymentInfo from "../custom/PaymentInfo";
+import { formatDateTime } from "@/libs/helpers/formatter/dateFormatter";
 
 interface DetailTrainingProps {
   data: Training;
@@ -76,7 +76,8 @@ export default function DetailTraining({ data, account }: DetailTrainingProps) {
       <p className="flex items-center gap-2">
         <DateIcon />
         <span>
-          {dateFormatter(data.startTime)} - {dateFormatter(data.endTime)}
+          {formatDateTime(data.startTime).date} -{" "}
+          {formatDateTime(data.endTime).date}
         </span>
       </p>
       <p className="flex items-center gap-2">

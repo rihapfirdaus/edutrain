@@ -5,7 +5,6 @@ import CardBase from "./CardBase";
 import { Calendar as DateIcon } from "lucide-react";
 import Link from "next/link";
 import currencyFormatter from "@/libs/helpers/formatter/currencyFormatter.";
-import { dateFormatter } from "@/libs/helpers/formatter/dateFormatter";
 import { actionRegisterEvent } from "@/libs/actions/actionRegisterEvent";
 import {
   EventStatus,
@@ -13,12 +12,12 @@ import {
 } from "@/libs/helpers/eventStatusChecker";
 import { useState } from "react";
 import { Training } from "@/libs/entities/Training";
-import { useRouter } from "next/navigation";
 import {
   capitalizeEachWord,
   formatUrlString,
 } from "@/libs/helpers/formatter/stringFormatter";
 import { actionPaymentEvent } from "@/libs/actions/actionPaymentEvent";
+import { formatDateTime } from "@/libs/helpers/formatter/dateFormatter";
 
 interface CatalogTrainingProps {
   data: Training;
@@ -81,7 +80,8 @@ export default function CatalogTraining({ data }: CatalogTrainingProps) {
           <p className="flex gap-2 text-sm items-center">
             <DateIcon size={20} />
             <span>
-              {dateFormatter(data.startTime)} - {dateFormatter(data.endTime)}
+              {formatDateTime(data.startTime).date} -{" "}
+              {formatDateTime(data.endTime).date}
             </span>
           </p>
         </div>

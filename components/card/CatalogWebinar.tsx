@@ -3,9 +3,9 @@
 import Image from "next/image";
 import CardBase from "./CardBase";
 import { Calendar as DateIcon, AlarmClock as TimeIcon } from "lucide-react";
-import timeFormatter from "@/libs/helpers/formatter/timeFormatter";
+
 import Link from "next/link";
-import { dateFormatter } from "@/libs/helpers/formatter/dateFormatter";
+
 import {
   EventStatus,
   eventStatusChecker,
@@ -19,6 +19,7 @@ import {
 } from "@/libs/helpers/formatter/stringFormatter";
 import { actionPaymentEvent } from "@/libs/actions/actionPaymentEvent";
 import currencyFormatter from "@/libs/helpers/formatter/currencyFormatter.";
+import { formatDateTime } from "@/libs/helpers/formatter/dateFormatter";
 
 interface CatalogWebinarProps {
   data: Webinar;
@@ -80,11 +81,11 @@ export default function CatalogWebinar({ data }: CatalogWebinarProps) {
         <div className="flex justify-between items-center flex-wrap">
           <p className="flex gap-2 text-sm items-center">
             <DateIcon size={20} />
-            <span>{dateFormatter(data.startTime)}</span>
+            <span>{formatDateTime(data.startTime).date}</span>
           </p>
           <p className="flex gap-2 text-sm items-center">
             <TimeIcon size={20} />
-            <span>{timeFormatter(data.startTime)}</span>
+            <span>{formatDateTime(data.startTime).time}</span>
           </p>
         </div>
 

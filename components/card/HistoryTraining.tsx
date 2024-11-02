@@ -7,10 +7,9 @@ import {
   BookText as MateriIcon,
   MessageSquareMore as QuestionIcon,
 } from "lucide-react";
-import timeFormatter from "@/libs/helpers/formatter/timeFormatter";
 import Link from "next/link";
-import { dateFormatter } from "@/libs/helpers/formatter/dateFormatter";
 import { Training } from "@/libs/entities/Training";
+import { formatDateTime } from "@/libs/helpers/formatter/dateFormatter";
 
 interface HistoryTrainingProps {
   data: Training;
@@ -44,12 +43,13 @@ export default function HistoryTraining({ data }: HistoryTrainingProps) {
             <p className="flex gap-2 items-center px-2">
               <DateIcon size={20} />
               <span>
-                {dateFormatter(data.startTime)} - {dateFormatter(data.endTime)}
+                {formatDateTime(data.startTime).date} -{" "}
+                {formatDateTime(data.endTime).date}
               </span>
             </p>
             <p className="gap-2 items-center px-2 hidden lg:flex">
               <TimeIcon size={20} />
-              <span>{timeFormatter(data.startTime)}</span>
+              <span>{formatDateTime(data.startTime).time}</span>
             </p>
             {data.certificate != null && <p className="px-2">"Sertifikat"</p>}
           </div>
