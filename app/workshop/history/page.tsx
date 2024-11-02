@@ -3,18 +3,13 @@ import HistoryWorkshop from "@/components/card/HistoryWorkshop";
 import { TabLinkItem } from "@/components/navigation/TabLink";
 import TemplateCatalog from "@/components/template/TemplateCatalog";
 import { auth } from "@/libs/actions/tokenHandler";
-import { Error, ErrorMessage } from "@/libs/entities/Error";
 import { getRegisteredWorkshops } from "@/libs/fetchs/fetchWorkshop";
 
 export default async function HistoryWorkshopPage() {
   const isAuth = await auth();
 
-  const workshops = await getRegisteredWorkshops();
-  let error: Error = { status: false, message: ErrorMessage.None };
+  const workshops = (await getRegisteredWorkshops()) ?? [];
 
-  if (workshops === null || workshops.length === 0) {
-    error = { status: true, message: ErrorMessage.Empty };
-  }
   const tabs: TabLinkItem[] = [
     {
       href: "/workshop",

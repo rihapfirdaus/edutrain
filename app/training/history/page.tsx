@@ -2,11 +2,12 @@ import HistoryTraining from "@/components/card/HistoryTraining";
 import { TabLinkItem } from "@/components/navigation/TabLink";
 import TemplateCatalog from "@/components/template/TemplateCatalog";
 import { auth } from "@/libs/actions/tokenHandler";
+import { Training } from "@/libs/entities/Training";
 import { getRegisteredTrainings } from "@/libs/fetchs/fetchTraining";
 
 export default async function HistoryTrainingPage() {
   const isAuth = await auth();
-  const trainings = await getRegisteredTrainings();
+  const trainings: Training[] = (await getRegisteredTrainings()) ?? [];
 
   const tabs: TabLinkItem[] = [
     {

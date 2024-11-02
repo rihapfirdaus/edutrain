@@ -8,13 +8,14 @@ interface TemplateDetailEventProps {
   data: any;
   children: React.ReactNode;
   Card: typeof DetailWebinar | typeof DetailWorkshop | typeof DetailTraining;
-  account?: Account;
+  account?: Account | null;
 }
 
 export default function TemplateDetailEvent({
   data,
   children,
   Card,
+  account,
 }: TemplateDetailEventProps) {
   return (
     <main className="flex items-center flex-grow flex-col gap-4 pt-8 xl:gap-6">
@@ -33,7 +34,7 @@ export default function TemplateDetailEvent({
                 className="w-full xl:max-w-[calc(100%-24rem)] min-h-44 max-h-[40rem] object-cover object-center rounded-xl flex-grow"
               />
 
-              <Card data={data} />
+              <Card data={data} account={account} />
             </div>
             <div dangerouslySetInnerHTML={{ __html: data.description }} />
           </div>

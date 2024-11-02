@@ -8,7 +8,7 @@ import { getNewestTrainings } from "@/libs/fetchs/fetchTraining";
 
 export default async function TrainingPage() {
   const isAuth = await auth();
-  const trainings: Training[] = await getNewestTrainings();
+  const trainings: Training[] = (await getNewestTrainings()) ?? [];
 
   const tabs: TabLinkItem[] = [
     {

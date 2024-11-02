@@ -3,11 +3,12 @@ import HistoryWebinar from "@/components/card/HistoryWebinar";
 import { TabLinkItem } from "@/components/navigation/TabLink";
 import TemplateCatalog from "@/components/template/TemplateCatalog";
 import { auth } from "@/libs/actions/tokenHandler";
+import { Webinar } from "@/libs/entities/Webinar";
 import { getRegisteredWebinars } from "@/libs/fetchs/fetchWebinar";
 
 export default async function HistoryWebinarPage() {
   const isAuth = await auth();
-  const webinars = await getRegisteredWebinars();
+  const webinars: Webinar[] = (await getRegisteredWebinars()) ?? [];
 
   const tabs: TabLinkItem[] = [
     {

@@ -8,7 +8,7 @@ import { Webinar } from "@/libs/entities/Webinar";
 
 export default async function WebinarPage() {
   const isAuth = await auth();
-  const webinars: Webinar[] = await getNewestWebinars();
+  const webinars: Webinar[] = (await getNewestWebinars()) ?? [];
 
   const tabs: TabLinkItem[] = [
     {

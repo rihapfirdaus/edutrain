@@ -19,17 +19,18 @@ import { getNewestWorkshops } from "@/libs/fetchs/fetchWorkshop";
 import { getNewestTrainings } from "@/libs/fetchs/fetchTraining";
 import { getBanner } from "@/libs/fetchs/fetchBanner";
 import { getVideo } from "@/libs/fetchs/fetchVideo";
+import { Webinar } from "@/libs/entities/Webinar";
 
 export default async function LandingPage() {
   loadingService.showLoading();
 
   const isAuth = await auth();
   const account = await getAccount();
-  const banners = await getBanner();
-  const webinars = (await getNewestWebinars()).slice(0, 4);
-  const workshops = (await getNewestWorkshops()).slice(0, 4);
-  const trainings = (await getNewestTrainings()).slice(0, 4);
-  const videos = (await getVideo()).slice(0, 3);
+  const banners = (await getBanner()) || [];
+  const webinars: Webinar[] = (await getNewestWebinars()) || [];
+  const workshops = (await getNewestWorkshops()) || [];
+  const trainings = (await getNewestTrainings()) || [];
+  const videos = (await getVideo()) ?? [];
 
   loadingService.hideLoading();
 

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import TemplateChecker from "@/components/template/TemplateChecker";
+import TemplateNavChecker from "@/components/template/TemplateNavChecker";
 import { auth } from "@/libs/actions/tokenHandler";
 import FloatingHelpCenterButton from "@/components/custom/FloatingHelpCenterButton";
 import { getAccount } from "@/libs/fetchs/fetchAccount";
@@ -28,16 +28,16 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const isAuth = await auth();
-  const account: Account = await getAccount();
+  const account: Account | null = await getAccount();
 
   return (
     <html lang="in">
       <body>
         <LoadingProvider>
           <ModalProvider>
-            <TemplateChecker auth={isAuth} account={account}>
+            <TemplateNavChecker auth={isAuth} account={account}>
               {children}
-            </TemplateChecker>
+            </TemplateNavChecker>
             <FloatingHelpCenterButton />
           </ModalProvider>
         </LoadingProvider>
