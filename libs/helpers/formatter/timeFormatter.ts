@@ -1,3 +1,5 @@
+import { formatDateWithOffset } from "./dateFormatter";
+
 export default function timeFormatter(dateString: string) {
   if (!dateString) {
     return "";
@@ -8,7 +10,8 @@ export default function timeFormatter(dateString: string) {
     minute: "2-digit",
   };
 
+  const date = formatDateWithOffset(dateString);
   return `${new Intl.DateTimeFormat("id-ID", timeOptions).format(
-    new Date(dateString)
+    new Date(date)
   )} WIB`;
 }

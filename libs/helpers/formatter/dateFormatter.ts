@@ -1,3 +1,13 @@
+export function formatDateWithOffset(dateString: string) {
+  if (!dateString) {
+    throw new Error("Invalid date string");
+  }
+
+  const formattedDate = dateString.replace(/Z$/, "+07:00");
+
+  return formattedDate;
+}
+
 export function dateFormatter(dateString: string): string {
   if (!dateString) {
     return "";
@@ -9,9 +19,8 @@ export function dateFormatter(dateString: string): string {
     year: "numeric",
   };
 
-  return new Intl.DateTimeFormat("id-ID", dateOptions).format(
-    new Date(dateString)
-  );
+  const date = formatDateWithOffset(dateString);
+  return new Intl.DateTimeFormat("id-ID", dateOptions).format(new Date(date));
 }
 
 export function inputDateFormatter(dateString: string): string {
