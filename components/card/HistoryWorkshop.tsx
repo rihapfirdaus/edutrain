@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import CardBase from "./CardBase";
 import {
@@ -40,14 +41,18 @@ export default function HistoryWorkshop({ data }: HistoryWorkshopProps) {
           </h4>
 
           <div className="flex items-center flex-wrap divide-x-2 divide-black">
-            <p className="flex gap-2 items-center px-2">
-              <DateIcon size={20} />
-              <span>{dateFormatter(data.startTime)}</span>
-            </p>
-            <p className="gap-2 items-center px-2 hidden lg:flex">
-              <TimeIcon size={20} />
-              <span>{timeFormatter(data.startTime)}</span>
-            </p>
+            {data.startTime && (
+              <>
+                <p className="flex gap-2 items-center px-2">
+                  <DateIcon size={20} />
+                  <span>{dateFormatter(data.startTime)}</span>
+                </p>
+                <p className="gap-2 items-center px-2 hidden lg:flex">
+                  <TimeIcon size={20} />
+                  <span>{timeFormatter(data.startTime)}</span>
+                </p>
+              </>
+            )}
             {data.certificate != null && <p className="px-2">"Sertifikat"</p>}
           </div>
         </div>
