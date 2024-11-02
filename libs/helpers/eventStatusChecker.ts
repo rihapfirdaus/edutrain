@@ -22,8 +22,11 @@ export function eventStatusChecker(
 }
 
 export enum EventStatus {
+  Waiting = "Menunggu Verifikasi Pembayaran",
+  Paid = "Pembayaran Terverivikasi",
   Registered = "Telah Terdaftar",
-  Past = "Pendaftaran telah ditutup",
+  Past = "Pendaftaran Telah Ditutup",
   Open = "Daftar Sekarang",
-  Registering = "mendaftar...",
+  OpenOrder = "Order Sekarang",
+  Registering = "Mendaftar...",
 }
