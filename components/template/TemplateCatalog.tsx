@@ -13,11 +13,20 @@ import { Input } from "../custom/Input";
 import { ErrorMessage } from "@/libs/entities/Error";
 import { useEffect, useState } from "react";
 import { Filter, searchEvent, Sort } from "@/libs/services/SearchService";
+import HistoryWebinar from "../card/HistoryWebinar";
+import HistoryWorkshop from "../card/HistoryWorkshop";
+import HistoryTraining from "../card/HistoryTraining";
 
 interface TemplateCatalogProps {
   title: string;
   entity: string;
-  Card: typeof CatalogWebinar | typeof CatalogTraining | typeof CatalogWorkshop;
+  Card:
+    | typeof CatalogWebinar
+    | typeof CatalogTraining
+    | typeof CatalogWorkshop
+    | typeof HistoryWebinar
+    | typeof HistoryWorkshop
+    | typeof HistoryTraining;
   data: any[];
   auth: boolean;
   tabs?: TabLinkItem[];
@@ -54,7 +63,7 @@ export default function TemplateCatalog({
   }, [filter, sort, query, data]);
 
   return (
-    <div className="flex flex-col items-center gap-4 xl:gap-6 py-8 flex-grow bg-[#f4f4f4] transition-all">
+    <div className="flex flex-col items-center gap-4 xl:gap-6 py-8 flex-grow bg-secondary transition-all">
       <div className="max-w-[calc(100%-1rem)] md:max-w-[calc(100%-4rem)] xl:max-w-[calc(100%-16rem)] flex flex-col h-full w-full gap-4">
         {auth && tabs ? (
           <TabLink tabs={tabs} />
@@ -82,7 +91,7 @@ export default function TemplateCatalog({
               }`}
               type="button"
               onClick={handleAdvancedSearch}
-              className="px-4 py-2 bg-[#0041A1] text-white rounded-lg"
+              className="px-4 py-2 bg-primary text-white rounded-lg"
             >
               {advancedSearch ? <CloseIcon /> : <SettingIcon />}
             </button>
@@ -150,7 +159,7 @@ export default function TemplateCatalog({
             <ModalEmpty message={ErrorMessage.Empty} />
           ) : (
             <>
-              {datas?.map((item) => (
+              {datas.map((item) => (
                 <Card key={item.id} data={item} />
               ))}
             </>
