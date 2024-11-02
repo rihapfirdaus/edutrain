@@ -1,17 +1,16 @@
-import { formatDateWithOffset } from "./dateFormatter";
-
 export default function timeFormatter(dateString: string) {
   if (!dateString) {
     return "";
   }
 
-  const timeOptions: Intl.DateTimeFormatOptions = {
-    hour: "2-digit",
-    minute: "2-digit",
-  };
+  const date = new Date(dateString);
 
-  const date = formatDateWithOffset(dateString);
-  return `${new Intl.DateTimeFormat("id-ID", timeOptions).format(
-    new Date(date)
-  )} WIB`;
+  if (isNaN(date.getTime())) {
+    throw new Error("Invalid date string");
+  }
+
+  const hours = String(date.getUTCHours()).padStart(2, "0");
+  const minutes = String(date.getUTCMinutes()).padStart(2, "0");
+
+  return `${hours}:${minutes} WIB`;
 }

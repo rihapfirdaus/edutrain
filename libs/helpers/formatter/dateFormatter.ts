@@ -1,50 +1,41 @@
-export function formatDateWithOffset(dateString: string) {
-  if (!dateString) {
+export function dateFormatter(dateString: string): string {
+  const date = new Date(dateString);
+
+  if (isNaN(date.getTime())) {
     throw new Error("Invalid date string");
   }
 
-  const formattedDate = dateString.replace(/Z$/, "+07:00");
+  const year = date.getFullYear();
+  const monthNames = [
+    "Januari",
+    "Februari",
+    "Maret",
+    "April",
+    "Mei",
+    "Juni",
+    "Juli",
+    "Agustus",
+    "September",
+    "Oktober",
+    "November",
+    "Desember",
+  ];
+  const month = monthNames[date.getMonth()];
+  const day = String(date.getDate()).padStart(2, "0");
 
-  return formattedDate;
-}
-
-export function dateFormatter(dateString: string): string {
-  if (!dateString) {
-    return "";
-  }
-
-  const dateOptions: Intl.DateTimeFormatOptions = {
-    day: "2-digit",
-    month: "long",
-    year: "numeric",
-  };
-
-  const date = formatDateWithOffset(dateString);
-  return new Intl.DateTimeFormat("id-ID", dateOptions).format(new Date(date));
+  return `${day} ${month} ${year}`;
 }
 
 export function inputDateFormatter(dateString: string): string {
-  if (!dateString) {
-    return "";
-  }
-
   const date = new Date(dateString);
+
   if (isNaN(date.getTime())) {
-    return "";
+    throw new Error("Invalid date string");
   }
 
-  const options: Intl.DateTimeFormatOptions = {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  };
-
-  const formatter = new Intl.DateTimeFormat("en-CA", options);
-  const parts = formatter.formatToParts(date);
-
-  const year = parts.find((part) => part.type === "year")?.value;
-  const month = parts.find((part) => part.type === "month")?.value;
-  const day = parts.find((part) => part.type === "day")?.value;
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
 
   return `${year}-${month}-${day}`;
 }
