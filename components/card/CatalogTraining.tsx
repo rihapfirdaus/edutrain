@@ -68,7 +68,7 @@ export default function CatalogTraining({ data }: CatalogTrainingProps) {
         alt={data.title}
         width={480}
         height={240}
-        className="h-44 object-cover object-center"
+        className="h-44 object-cover object-center bg-[#d4d4d4]"
       />
 
       <Link

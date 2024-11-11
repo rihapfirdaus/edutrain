@@ -27,7 +27,7 @@ export default function HistoryWebinar({ data }: HistoryWebinarProps) {
         alt={data.title}
         width={480}
         height={240}
-        className="lg:h-44 sm:w-80 object-cover object-center"
+        className="lg:h-44 sm:w-80 object-cover object-center bg-[#d4d4d4]"
       />
 
       <div className="flex flex-col justify-center gap-2 p-2">

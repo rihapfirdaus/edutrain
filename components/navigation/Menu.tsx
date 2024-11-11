@@ -29,7 +29,7 @@ export default function Menu({ auth, account }: MenuProps) {
         backgroundImage:
           "linear-gradient(to right, rgba(0, 65, 161, 0.8), rgba(0, 142, 214, 0.8)), url('/bg_uin_4.jpeg')",
       }}
-      className="py-8 flex flex-col gap-4 max-w-full justify-center items-center text-white font-bold bg-cover bg-center"
+      className="min-h-[40rem] py-4 flex flex-col gap-4 max-w-full justify-end items-center text-white font-bold bg-cover bg-center"
     >
       {auth && account ? (
         <>

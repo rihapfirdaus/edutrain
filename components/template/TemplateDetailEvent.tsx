@@ -28,10 +28,10 @@ export default function TemplateDetailEvent({
             <div className="flex flex-col xl:flex-row gap-4 w-full">
               <Image
                 src={data.banner}
-                alt="#"
+                alt={data.title}
                 width={480}
                 height={240}
-                className="w-full xl:max-w-[calc(100%-24rem)] min-h-44 max-h-[40rem] object-cover object-center rounded-xl flex-grow"
+                className="w-full xl:max-w-[calc(100%-24rem)] min-h-44 max-h-[40rem] object-cover object-center rounded-xl flex-grow border-2 bg-[#d4d4d4]"
               />
 
               <Card data={data} account={account} />
