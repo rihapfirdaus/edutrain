@@ -43,7 +43,7 @@ export default async function LandingPage() {
       <main>
         <HighlightCatalog
           title="Webinar Terbaru"
-          desc="Cek daftar webinar yang akan datang di bawah ini."
+          desc="Cek daftar Webinar yang akan datang di bawah ini."
           hrefSeeMore="/webinar"
           Card={CatalogWebinar}
           data={webinars}
@@ -57,7 +57,7 @@ export default async function LandingPage() {
         />
         <HighlightCatalog
           title="Training Terbaru"
-          desc="Cek daftar webinar yang akan datang di bawah ini."
+          desc="Cek daftar Training yang akan datang di bawah ini."
           hrefSeeMore="/training"
           Card={CatalogTraining}
           data={trainings}
